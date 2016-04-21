@@ -131,11 +131,11 @@
  '(truncate-lines nil)
  '(truncate-partial-width-windows nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
- '(user-mail-address "raskolnikov@es.gnu.org")
+ '(user-mail-address "kostspielig@gmail.com")
  '(vc-follow-symlinks t)
  '(visual-line-fringe-indicators (quote (nil right-curly-arrow)))
  '(web-mode-markup-indent-offset 2)
- '(yas/root-directory "/home/raskolnikov/.emacs.d/snippets" nil (yasnippet))
+ '(yas/root-directory "/home/maria/.emacs.d/snippets" nil (yasnippet))
  '(zoom-frame/buffer (quote buffer)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

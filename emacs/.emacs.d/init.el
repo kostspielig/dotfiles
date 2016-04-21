@@ -9,8 +9,8 @@
 (remove-hook 'kill-buffer-query-functions
 	     'server-kill-buffer-query-function)
 
-(defun author-name  () "Juan Pedro Bolívar Puente")
-(defun author-email () "raskolnikov@es.gnu.org")
+(defun author-name  () "Maria Carrasco")
+(defun author-email () "kostspielig@gmail.com")
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/jpb"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
