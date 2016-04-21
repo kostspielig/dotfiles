@@ -1,8 +1,8 @@
 
 export MPD_HOST=192.168.42.1
 
-export EMAIL="raskolnikov@gnu.org"
-export USERNAME="Juan Pedro Bolívar Puente"
+export EMAIL="kostspielig@gmail.com"
+export USERNAME="Maria Carrasco"
 
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
@@ -23,18 +23,10 @@ export SHLIB_GXXLD="g++-$GCVER"
 export GOPATH=~/.go-path
 
 add-path $GOPATH/bin
-add-path /home/raskolnikov/usr/bin
-add-path /home/raskolnikov/.cabal/bin
+add-path $HOME/usr/bin
+add-path $HOME/.cabal/bin
 
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
-
-# Google cloud stuff
-[ -f /home/raskolnikov/.travis/travis.sh ] && \
-    source ~/soft/google-cloud-sdk/path.bash.inc
-[ -f ~/soft/google-cloud-sdk/completion.bash.inc ] && \
-    source ~/soft/google-cloud-sdk/completion.bash.inc
-[ -f ~/.travis/travis.sh ] && \
-    source ~/.travis/travis.sh
 
 # Guix
 export CPATH=$HOME/.guix-profile/include
@@ -44,3 +36,9 @@ export GUILE_LOAD_PATH=$HOME/.guix-profile/share/guile/site/2.0
 export GUILE_LOAD_COMPILED_PATH=$HOME/.guix-profile/share/guile/site/2.0
 add-path $HOME/.guix-profile/bin
 add-path $HOME/.guix-profile/sbin
+
+# Maria's environment
+add-path $HOME/.rvm/bin # Add RVM to PATH for scripting
+add-path /home/maria/google-cloud-sdk/platform/google_appengine/
+source '/home/maria/google-cloud-sdk/path.bash.inc'
+source '/home/maria/google-cloud-sdk/completion.bash.inc'
