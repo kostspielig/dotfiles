@@ -52,4 +52,27 @@ set_prompt () {
     PS1+=" "
 }
 
-PROMPT_COMMAND='set_prompt'
+set_prompt_maria() {
+    lastcmd=$? # Must come first!
+
+    fancyx='\342\234\227'
+    checkmark='\342\234\223'
+    red="\[$(tput bold; tput setaf 1)\]"
+    green="\[$(tput bold; tput setaf 2)\]"
+    reset="\[$(tput sgr0)\]"
+
+    if [[ $lastcmd == 0 ]]; then
+        PS1="$green$checkmark$reset "
+    else
+        PS1="$red$fancyx$reset "
+    fi
+
+    PS1+='\[\e[1;32m\]\t\[\e[1;91m\]-\[\e[1;36m\]\u\[\e[1;33m\]\[\e[1;33m\]\w\[\033[m\]\[\e[1;91m\]\[`
+           case "$(__git_prompt_color)" in
+              red) printf '$__red';;
+              green) printf '$__green';;
+              black) printf '$__black';;
+           esac`\]$(__git_prompt)\[\033[0m\] \$ '
+}
+
+PROMPT_COMMAND='set_prompt_maria'
