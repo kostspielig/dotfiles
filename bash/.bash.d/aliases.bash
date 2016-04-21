@@ -57,3 +57,7 @@ alias abl-configure="modules/build-system/scripts/configure.py"
 alias abl-build="modules/build-system/scripts/build.py"
 alias abl-run="modules/build-system/scripts/run.py"
 alias abl-all="abl-configure && abl-build && abl-run"
+
+# maria
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias gulp-coffee='gulp --require coffee-script'
