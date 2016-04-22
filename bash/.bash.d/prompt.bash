@@ -67,7 +67,7 @@ set_prompt_maria() {
         PS1="$red$fancyx$reset "
     fi
 
-    PS1+='\[\e[1;32m\]\t\[\e[1;91m\]-\[\e[1;36m\]\u\[\e[1;33m\]\[\e[1;33m\]\w\[\033[m\]\[\e[1;91m\]\[`
+    PS1+='\[\e[1;36m\]\u\[\e[1;33m\] \[\e[1;33m\]\w\[\033[m\]\[\e[1;91m\]\[`
            case "$(__git_prompt_color)" in
               red) printf '$__red';;
               green) printf '$__green';;
