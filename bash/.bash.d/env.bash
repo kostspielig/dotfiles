@@ -39,6 +39,8 @@ add-path $HOME/.guix-profile/sbin
 
 # Maria's environment
 add-path $HOME/.rvm/bin # Add RVM to PATH for scripting
+add-path $HOME/.rvm/scripts/rvm
 add-path /home/maria/google-cloud-sdk/platform/google_appengine/
 source $HOME/google-cloud-sdk/path.bash.inc
 source $HOME/google-cloud-sdk/completion.bash.inc
+add-path $HOME/.local/bin

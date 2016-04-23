@@ -61,3 +61,13 @@ alias abl-all="abl-configure && abl-build && abl-run"
 # maria
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias gulp-coffee='gulp --require coffee-script'
+
+alias heidisql='wine C:\\Program\ Files\\HeidiSQL\\heidisql.exe'
+alias lock='gnome-screensaver-command -l'
+
+# git aliases
+alias gs="git status"
+alias gc="git commit"
+alias gr="git checkout"
+alias ga="git add"
+alias gl="git lola"
