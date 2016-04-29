@@ -44,3 +44,4 @@ add-path /home/maria/google-cloud-sdk/platform/google_appengine/
 source $HOME/google-cloud-sdk/path.bash.inc
 source $HOME/google-cloud-sdk/completion.bash.inc
 add-path $HOME/.local/bin
+source "$HOME/.rvm/scripts/rvm"
