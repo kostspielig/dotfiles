@@ -9,7 +9,7 @@
 	url = https://github.com/PCMan/gtk3-nocsd
 [submodule "xmonad/.themes/Numix"]
 	path = xmonad/.themes/Numix
-	url = git@github.com:arximboldi/Numix.git
+	url = git@github.com:kostspielig/Numix.git
 [submodule "_deps/xdotool"]
 	path = _deps/xdotool
 	url = git@github.com:arximboldi/xdotool.git
