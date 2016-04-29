@@ -1,0 +1,10 @@
+#!/bin/bash
+if pidof chrome && zenity --question --text="Google Chrome is already running, kill it?"; then
+    killall -w chrome
+fi
+
+if ! pidof chrome; then
+    google-chrome %U --disable-web-security --ignore-certificate-errors
+else
+    wmctrl -xa google-chrome
+fi
