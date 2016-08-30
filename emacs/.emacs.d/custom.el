@@ -46,6 +46,7 @@
  '(ansi-color-for-comint-mode t)
  '(ansi-color-names-vector
    ["black" "red" "green yellow" "yellow" "deep sky blue" "magenta" "cyan" "white"])
+ '(cider-lein-command "/home/mcarrasco/usr/bin/lein")
  '(clojure-defun-style-default-indent t)
  '(clojure-indent-style t)
  '(coffee-extend-comments nil)
