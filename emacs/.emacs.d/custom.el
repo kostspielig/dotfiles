@@ -136,7 +136,7 @@
  '(user-mail-address "kostspielig@gmail.com")
  '(vc-follow-symlinks t)
  '(visual-line-fringe-indicators (quote (nil right-curly-arrow)))
- '(web-mode-markup-indent-offset 2)
+ '(web-mode-markup-indent-offset 4)
  '(yas/root-directory "/home/mcarrasco/.emacs.d/snippets")
  '(zoom-frame/buffer (quote buffer)))
 (custom-set-faces
