@@ -205,12 +205,12 @@
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
-(cl-loop
- for index from 1 to (- rainbow-delimiters-max-face-count 1) do
- (let* ((face (intern (format "rainbow-delimiters-depth-%d-face" index)))
-        (total rainbow-delimiters-max-face-count)
-        (perc (max (- (+ total 40) (* index 4)) 20)))
-   (set-face-attribute face nil :foreground (format "gray%d" perc))))
+;; (cl-loop
+;;  for index from 1 to (- rainbow-delimiters-max-face-count 1) do
+;;  (let* ((face (intern (format "rainbow-delimiters-depth-%d-face" index)))
+;;         (total rainbow-delimiters-max-face-count)
+;;         (perc (max (- (+ total 40) (* index 4)) 20)))
+;;    (set-face-attribute face nil :foreground (format "gray%d" perc))))
 
 (provide 'jpb-devel)
 
