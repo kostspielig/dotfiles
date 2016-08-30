@@ -11,6 +11,18 @@ add-path()
     PATH="$1:$PATH" # prepend to beginning
 }
 
+dk()
+{
+  case $1 in
+    ip )
+      docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
+    ;;
+    container )
+      docker ps -a
+    ;;
+  esac
+}
+
 zal()
 {
   base_path=/home/mcarrasco/Devel/shop/;
