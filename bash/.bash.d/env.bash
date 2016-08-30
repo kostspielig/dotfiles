@@ -27,6 +27,7 @@ add-path $HOME/usr/bin
 add-path $HOME/.cabal/bin
 
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
+add-path $HOME/npm-global/bin
 
 # Guix
 export CPATH=$HOME/.guix-profile/include
