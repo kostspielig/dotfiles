@@ -12,17 +12,14 @@
         <value type="int" value="23"/>
         <value type="int" value="4"/>
         <value type="int" value="2"/>
-        <value type="int" value="15"/>
         <value type="int" value="18"/>
         <value type="int" value="3"/>
         <value type="int" value="24"/>
         <value type="int" value="16"/>
-        <value type="int" value="10"/>
         <value type="int" value="8"/>
         <value type="int" value="25"/>
         <value type="int" value="6"/>
         <value type="int" value="7"/>
-        <value type="int" value="14"/>
         <value type="int" value="17"/>
         <value type="int" value="22"/>
         <value type="int" value="5"/>
@@ -78,6 +75,7 @@
         <value type="string" value="ibus panel"/>
         <value type="string" value="pidgin"/>
         <value type="string" value="smuxi-frontend-gnome"/>
+        <value type="string" value="hipchat"/>
         <value type="string" value="volti"/>
         <value type="string" value="xfce4-power-manager"/>
         <value type="string" value="scp-dbus-service.py"/>
