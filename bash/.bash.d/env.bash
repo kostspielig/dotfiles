@@ -46,3 +46,6 @@ source $HOME/google-cloud-sdk/path.bash.inc
 source $HOME/google-cloud-sdk/completion.bash.inc
 add-path $HOME/.local/bin
 source "$HOME/.rvm/scripts/rvm"
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+add-path /usr/share/apache-maven-3.0.5/bin
