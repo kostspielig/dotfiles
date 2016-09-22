@@ -74,10 +74,16 @@
       (0.1935483870967742 . 0.35714285714285715)
       (0.1870967741935484 . 0.6190476190476191)
       (0.1870967741935484 . 0.35714285714285715)))))
- '(elm-indent-offset 2)
+ '(elm-indent-offset 4)
  '(focus-follows-mouse t)
  '(ggtags-update-on-save nil)
  '(global-hl-line-mode t)
+ '(grep-find-ignored-directories
+   (quote
+    ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "node_modules")))
+ '(grep-find-ignored-files
+   (quote
+    (".#*" "*.hi" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.min.js")))
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(ido-max-directory-size 30000)
@@ -105,7 +111,7 @@
  '(mumamo-chunk-coloring 2)
  '(package-selected-packages
    (quote
-    (flycheck-apertium flycheck-elm elm-mode jsx-mode js2-mode jade-mode cider clojure-cheatsheet zoom-window zoom-frm zeal-at-point yasnippet yaml-mode xterm-color web-mode travis string-utils smex shell-toggle scss-mode sass-mode rust-mode request-deferred rainbow-delimiters projectile neotree multi-term markdown-mode+ magit jack-connect jabber-otr ido-ubiquitous haskell-mode gtags git-messenger gist ggtags geiser flymake-yaml flymake-sass emms dirtree dirtrack-buffer-name-track-mode diminish dedicated cmake-ide clojurescript-mode clojure-mode cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
+    (auto-complete flycheck-apertium flycheck-elm elm-mode jsx-mode js2-mode jade-mode cider clojure-cheatsheet zoom-window zoom-frm zeal-at-point yasnippet yaml-mode xterm-color web-mode travis string-utils smex shell-toggle scss-mode sass-mode rust-mode request-deferred rainbow-delimiters projectile neotree multi-term markdown-mode+ magit jack-connect jabber-otr ido-ubiquitous haskell-mode gtags git-messenger gist ggtags geiser flymake-yaml flymake-sass emms dirtree dirtrack-buffer-name-track-mode diminish dedicated cmake-ide clojurescript-mode clojure-mode cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
  '(projectile-global-mode t)
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
  '(rainbow-delimiters-max-face-count 10)
