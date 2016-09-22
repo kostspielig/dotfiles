@@ -18,6 +18,11 @@
 (add-to-list 'load-path (expand-file-name "~/.guix-profile/share/emacs/site-lisp"))
 (require 'guix-autoloads nil t)
 
+;;(ac-config-default)
+
+(add-to-list 'load-path "~/.emacs.d/lisp/tern/emacs")
+(autoload 'tern-mode "tern.el" nil t)
+
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
