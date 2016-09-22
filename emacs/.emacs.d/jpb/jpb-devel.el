@@ -280,12 +280,9 @@
 
 (add-hook 'web-mode-hook (lambda () (tern-mode t)))
 
-
-(eval-after-load 'tern
-   '(progn
-      (require 'tern-auto-complete)
-      (tern-ac-setup)))
-
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+(add-to-list 'company-backends 'company-tern)
 
 ;;
 ;; Clojure
