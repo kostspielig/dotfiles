@@ -1,8 +1,8 @@
 # Make emacs realize it can use colors
 if [ "x$EMACS" == "xt" ]; then
-    export TERM=eterm-color
+    export TERM=xterm-256color
 elif [ "x$INSIDE_EMACS" != "x" ]; then
-    export TERM=eterm-color
+    export TERM=xterm-256color
 fi
 
 # Use fancy globs
