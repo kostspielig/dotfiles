@@ -48,13 +48,11 @@
  '(ansi-color-for-comint-mode t)
  '(ansi-color-names-vector
    ["black" "red" "green yellow" "yellow" "deep sky blue" "magenta" "cyan" "white"])
-
- '(cider-lein-command "/home/mcarrasco/usr/bin/lein")
-
  '(auto-revert-use-notify t)
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "xdg-open")
  '(calendar-week-start-day 1)
+ '(cider-lein-command "/home/mcarrasco/usr/bin/lein")
  '(clojure-defun-style-default-indent t)
  '(clojure-indent-style :align-arguments)
  '(coffee-extend-comments nil)
@@ -83,21 +81,18 @@
       (0.1870967741935484 . 0.6190476190476191)
       (0.1870967741935484 . 0.35714285714285715)))))
  '(elm-indent-offset 4)
- '(focus-follows-mouse t)
- '(ggtags-update-on-save nil)
- '(global-hl-line-mode t)
- '(grep-find-ignored-directories
-   (quote
-    ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "node_modules")))
- '(grep-find-ignored-files
-   (quote
-    (".#*" "*.hi" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.min.js")))
  '(fci-always-use-textual-rule t)
  '(fci-rule-color "#444")
  '(focus-follows-mouse t)
  '(ggtags-update-on-save nil)
  '(global-hl-line-mode t)
  '(gnus-use-dribble-file nil)
+ '(grep-find-ignored-directories
+   (quote
+    ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "node_modules")))
+ '(grep-find-ignored-files
+   (quote
+    (".#*" "*.hi" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.min.js")))
  '(helm-M-x-fuzzy-match t)
  '(helm-candidate-separator "▶")
  '(helm-display-header-line t)
