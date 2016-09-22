@@ -21,7 +21,6 @@
 ;;
 ;; Term
 ;;
-
 (add-hook 'term-mode-hook
           '(lambda() (set (make-local-variable 'global-hl-line-mode) nil)))
 
@@ -162,6 +161,17 @@ Also returns nil if pid is nil."
   (other-window 1)
   (shrink-window (- (window-height) 12))
   (eshell))
+
+(defun jpb-helm-mu-completing-read (prompt
+                                    collection
+                                    &optional
+                                    predicate require-match
+                                    initial-input hist def
+                                    inherit-input-method)
+  (helm--completing-read-default prompt collection predicate t
+                                 initial-input hist def
+                                 inherit-input-method))
+(setq mu4e-completing-read-function 'jpb-helm-mu-completing-read)
 
 (add-hook 'write-file-hooks 'time-stamp)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)

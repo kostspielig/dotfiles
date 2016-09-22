@@ -14,6 +14,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import qualified Data.Char       as C
 import qualified Data.List       as L
+import Data.Ratio ((%))
 
 import XMonad.Util.Run
 
@@ -22,16 +23,20 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.InsertPosition as I
 
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Circle
-import XMonad.Layout.Magnifier
-import XMonad.Layout.Renamed as R
-import XMonad.Layout.Gaps as G
-import XMonad.Layout.Minimize
 import XMonad.Layout.BoringWindows as B
+import XMonad.Layout.Circle
+import XMonad.Layout.Gaps as G
+import XMonad.Layout.Grid
+import XMonad.Layout.IM
+import XMonad.Layout.Magnifier
+import XMonad.Layout.Minimize
+import XMonad.Layout.NoBorders
+import XMonad.Layout.PerWorkspace
+import XMonad.Layout.Renamed as R
 
 import XMonad.Actions.NoBorders
 import XMonad.Actions.Navigation2D
+import XMonad.Actions.CopyWindow
 import XMonad.Prompt
 import XMonad.Prompt.RunOrRaise
 import XMonad.Prompt.Window
@@ -40,6 +45,25 @@ import XMonad.Util.Cursor
 
 import XMonad.Hooks.EwmhDesktops
 import System.Taffybar.Hooks.PagerHints
+
+-- http://lpaste.net/83047
+
+copyWindowToAll :: (Eq s, Eq i, Eq a) => a -> W.StackSet i l a s sd -> W.StackSet i l a s sd
+copyWindowToAll w s =
+  foldr (copyWindow w) s $ map W.tag (W.workspaces s)
+
+doSticky :: ManageHook
+doSticky =
+  do
+    win <- ask
+    doF $ copyWindowToAll win
+
+doBoring :: ManageHook
+doBoring =
+  do
+    win <- ask
+    liftX (broadcastMessage $ B.Merge "managed" [win])
+    doF id
 
 main :: IO ()
 main = do
@@ -187,19 +211,24 @@ main = do
         , ((mask, button3), (\w -> focus w >> mouseResizeWindow w))
         ]
 
-  let layout' = smartBorders normalLayout
+  let layout' = smartBorders $ B.boringWindows normalLayout
         where
           gap = id -- G.gaps [(G.U, 22)]
-          tallLayout = R.renamed [ R.Replace "Tall" ] $ minimize $ gap $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
+          tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ gap $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
           circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ gap $ magnifiercz' (100/80) Circle
-          fullLayout = R.renamed [ R.Replace "Full" ] $ minimize $ gap $ Full
-          normalLayout = B.boringWindows (circleLayout ||| tallLayout ||| fullLayout)
+          fullLayout   = R.renamed [ R.Replace "Full" ] $ minimize $ gap $ Full
+          imLayout     = R.renamed [ R.CutWordsLeft 2 ] $ magnifiercz' (100/80) $ withIM (2%10)
+                         (Or (Role "buddy_list") (Title "magnicida - Skype™"))
+                         (R.renamed [ R.Replace "Circle" ] Circle |||
+                          R.renamed [ R.Replace "Grid" ] (Mirror (GridRatio (12/10))))
+          normalLayout = onWorkspace "im" (imLayout) $
+                         circleLayout ||| tallLayout ||| fullLayout
 
   let manageHook' = composeAll
         [ resource  =? "Do"              --> doIgnore
         , className =? "stalonetray"     --> doIgnore
         , className =? "trayer"          --> doIgnore
-        , className =? "Xfce4-notifyd"   --> doIgnore
+        , className =? "Xfce4-notifyd"   --> doBoring >> doSticky
         , className =? "Xfdesktop"       --> doHideIgnore
         , title     =? "Desktop"         --> doHideIgnore
 
@@ -210,11 +239,12 @@ main = do
         , className =? "Tgcm"                    --> doCenterFloat
         , className =? "Qjackctl"                --> doSideFloat SE
         , className =? "Qjackctl.real"           --> doSideFloat SE
-        , className =? "Mixxx"                   --> doCenterFloat
+        , className =? "Gcr-prompter"            --> doCenterFloat
 
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
-        , className =? "Pidgin"           --> doShift "mail"
+        , className =? "Pidgin"           --> doShift "im"
+        , className =? "Skype"            --> doShift "im"
 
         , isFullscreen --> doFullFloat
 
@@ -240,7 +270,6 @@ main = do
   spawnPipe "xfsettingsd --replace --no-daemon"
   spawnPipe "xfce4-power-manager --restart"
   spawnPipe "tracker daemon -s"
-  spawnPipe "nautilus --no-default-window"
   spawnPipe "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
   spawnPipe "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
   spawnPipe "pidof syncthing || syncthing"

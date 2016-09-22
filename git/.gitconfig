@@ -1,9 +1,10 @@
 [core]
 	editor = emacsclient -a emacs24
-	excludesfile = /home/raskolnikov/.gitignore-global
+	excludesfile = ~/.gitignore-global
 [user]
 	name = Juan Pedro Bolívar Puente
 	email = raskolnikov@gnu.org
+	signingkey = 529BA962690A70B1
 [push]
 	default = simple
 [alias]

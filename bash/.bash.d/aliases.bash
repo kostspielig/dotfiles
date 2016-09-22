@@ -5,7 +5,11 @@ alias reload="source ~/.bashrc"
 alias s=sudo
 
 # colors
-alias ls='ls --color=auto -X --group-directories-first'
+if [ "$(uname)" == "Darwin" ]; then
+    alias ls='gls --color=auto -X --group-directories-first'
+else
+    alias ls='ls --color=auto -X --group-directories-first'
+fi
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
@@ -22,7 +26,15 @@ alias rm='echo "This is not the command you are looking for."; false'
 alias tra='trash *'
 
 # Open like from nautilus
-alias open=xdg-open
+if [ "$(uname)" != "Darwin" ]; then
+    function open()
+    {
+        for var in "$@"
+        do
+            xdg-open $var
+        done
+    }
+fi
 
 # git
 alias gsuri="git submodule update --recursive --init"
@@ -32,25 +44,33 @@ alias gunignore="git update-index --no-assume-unchanged"
 alias glsignore="git ls-files -v | grep \"^[[:lower:]]\""
 
 # emacs
-function toemacs() { $* && wmctrl -xa emacs; }
-
+if [ "$(uname)" == "Darwin" ]; then
+    alias ee="emacsclient -n"
+else
+    function toemacs() { $* && wmctrl -xa emacs; }
+    alias ee="toemacs emacsclient -n"
+    complete -r ee
+fi
 alias e="emacsclient -t"
-alias ee="toemacs emacsclient -n"
 alias ew="emacsclient -n -c"
 alias se="SUDO_EDITOR='emacsclient -t' sudoedit"
 alias see="SUDO_EDITOR='emacsclient' toemacs sudoedit -b $*"
 alias sew="SUDO_EDITOR='emacsclient -c' sudoedit -b $*"
-complete -r ee
+
+alias killemacs="emacsclient -e \"(kill-emacs)\" -a false"
+alias compemacs='emacs --batch -l ~/.emacs.d/init.el --eval "(byte-recompile-directory (expand-file-name \"~/.emacs.d\") 0)" --kill'
 
 # cmake
-alias cmnt="cmake -G Ninja .. && ninja && ctest --output-on-failure"
-alias cmn="cmake -G Ninja .."
+alias cmake="\cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+alias c=cmake
+alias cn="cmake -G Ninja"
+alias cn-all="cn .. && ninja && ctest --output-on-failure"
+alias cm="cmake -G 'Unix Makefiles'"
+alias cm-all="cm .. && make -j 4 && ctest --output-on-failure"
 
-alias cmmt="cmake -G 'Unix Makefiles' .. && make -j 4 && ctest --output-on-failure"
-alias cmm="cmake -G 'Unix Makefiles' .."
-
-# ipython
-alias p=ipython
+# math
+alias p="ipython --no-confirm-exit"
+alias o=octave-cli
 
 # ableton
 alias abl-configure="modules/build-system/scripts/configure.py"
@@ -73,3 +93,12 @@ alias gc="git commit"
 alias gr="git checkout"
 alias ga="git add"
 alias gl="git lola"
+
+# web dev
+alias pjson="python -mjson.tool"
+
+# screen
+alias scr="screen -DR"
+
+# email
+alias sm="sync-mail"

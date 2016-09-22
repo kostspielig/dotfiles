@@ -8,28 +8,101 @@ export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c"
 
+#
+# C++
+#
 export LCVER=3.8
-export LC="ccache clang-$LCVER"
-export LXX="ccache clang++-$LCVER"
+export LC="clang-$LCVER"
+export LXX="clang++-$LCVER"
 
 export GCVER=5
-export GC="ccache gcc-$GCVER"
-export GXX="ccache g++-$GCVER"
+export GC="gcc-$GCVER"
+export GXX="g++-$GCVER"
 export SHLIB_GXXLD="g++-$GCVER"
+
+use-clang() {
+    export CC=$LC
+    export CXX=$LXX
+}
+
+use-gcc() {
+    export CC=$GC
+    export CXX=$GXX
+}
+
+disable-ccache() {
+    export CC=${CC#ccache}
+    export CXX=${CXX#ccache}
+}
+
+use-ccache() {
+    disable-ccache
+    export CC="ccache $CC"
+    export CXX="ccache $CXX"
+}
+
+if [ "$(uname)" == "Darwin" ]; then
+    use-clang
+else
+    use-gcc
+fi
 
 # export CCFLAGS="-fdiagnostics-color=always"
 # export CXXFLAGS="-fdiagnostics-color=always"
 
+export CTEST_OUTPUT_ON_FAILURE=1
+
+
+#
+# emscripten
+#
+add-path $HOME/soft/binaryen/build/bin
+add-path $HOME/dev/emsdk
+[ -f $HOME/dev/emsdk/emsdk_set_env.sh ] && \
+    source $HOME/dev/emsdk/emsdk_set_env.sh
+
+#
+# Go
+#
 export GOPATH=~/.go-path
-
 add-path $GOPATH/bin
-add-path $HOME/usr/bin
-add-path $HOME/.cabal/bin
 
+#
+# Local installs
+#
+add-path /usr/local/bin
+add-path ~/usr/bin
+add-path ~/.local/bin
+
+#
+# Haskell
+#
+add-path ~/.cabal/bin
+
+#
+# Node.js
+#
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
+
 add-path $HOME/npm-global/bin
 
+#
+# Google cloud stuff
+#
+[ -f ~/soft/google-cloud-sdk/completion.bash.inc ] && \
+    source ~/soft/google-cloud-sdk/completion.bash.inc
+[ -f ~/soft/google-cloud-sdk/path.bash.inc ] && \
+    source ~/soft/google-cloud-sdk/path.bash.inc
+
+#
+# Travis
+#
+[ -f ~/.travis/travis.sh ] && \
+    source ~/.travis/travis.sh
+
+#
 # Guix
+#
 export CPATH=$HOME/.guix-profile/include
 export LIBRARY_PATH=$HOME/.guix-profile/lib
 export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
@@ -75,3 +148,8 @@ fi
 
 #eval $(ssh-agent -s)
 #ssh-add
+
+#
+# Clojure
+#
+# export LEIN_FAST_TRAMPOLINE=true

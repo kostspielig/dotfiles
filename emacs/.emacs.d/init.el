@@ -5,6 +5,9 @@
 ;;   Author: Juan Pedro Bolivar Puente
 ;;
 
+;; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
+;; (byte-recompile-directory (expand-file-name "~/.emacs.d/jpb") 0)
+
 (server-start)
 (remove-hook 'kill-buffer-query-functions
 	     'server-kill-buffer-query-function)
@@ -14,6 +17,7 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/jpb"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/cc-mode"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/auto-install"))
 (add-to-list 'load-path (expand-file-name "~/.guix-profile/share/emacs/site-lisp"))
 (require 'guix-autoloads nil t)
@@ -35,6 +39,8 @@
 (require 'jpb-devel)
 (require 'jpb-cpp11)
 (require 'jpb-keys)
+(when (eq system-type 'darwin)
+  (require 'jpb-macos))
 
 (desktop-save-mode 1)
 (add-hook 'find-file-hook 'desktop-auto-save-set-timer)
