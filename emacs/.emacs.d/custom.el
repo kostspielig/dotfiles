@@ -188,7 +188,7 @@
  '(vc-follow-symlinks t)
  '(visual-line-fringe-indicators (quote (nil right-curly-arrow)))
  '(web-mode-markup-indent-offset 4)
- '(yas/root-directory "~/.emacs.d/snippets" nil (yasnippet))
+ '(yas/root-directory "~/.emacs.d/snippets")
  '(zoom-frame/buffer (quote buffer)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
