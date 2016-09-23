@@ -9,6 +9,9 @@
   (setq fill-column 80)
   (fci-mode))
 
+(add-hook 'after-init-hook #'global-company-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;;
 ;; GIT
 ;;
@@ -279,9 +282,18 @@
 
 (add-hook 'web-mode-hook (lambda () (tern-mode t)))
 
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
-(add-to-list 'company-backends 'company-tern)
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-tern))
+
+;; disable jshint since we prefer eslint checking
+(with-eval-after-load 'flycheck
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint))))
+
+;; use eslint with web-mode for jsx files
+(with-eval-after-load 'flycheck
+  (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 ;;
 ;; Clojure
