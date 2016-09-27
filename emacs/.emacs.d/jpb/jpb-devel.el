@@ -312,6 +312,20 @@
    nil))
 
 ;;
+;; Go
+;;
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-go))
+
+(add-hook 'go-mode-hook
+          (lambda ()
+            ;;(add-hook 'before-save-hook 'gofmt-before-save)
+            (setq tab-width 4)
+            (setq indent-tabs-mode 0)))
+
+(setq company-go-gocode-command "~/.go-path/bin/gocode")
+
+;;
 ;; Octave
 ;;
 (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
