@@ -23,6 +23,11 @@ dk()
   esac
 }
 
+mkcd()
+{
+    test -d "$1" || mkdir "$1" && cd "$1"
+}
+
 zal()
 {
   base_path=/home/mcarrasco/Devel/shop/;
