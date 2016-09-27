@@ -66,6 +66,7 @@ add-path $HOME/dev/emsdk
 #
 export GOPATH=~/.go-path
 add-path $GOPATH/bin
+add-path /usr/local/go/bin
 
 #
 # Local installs
