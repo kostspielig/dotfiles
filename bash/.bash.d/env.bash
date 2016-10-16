@@ -90,10 +90,13 @@ add-path $HOME/npm-global/bin
 #
 # Google cloud stuff
 #
-[ -f ~/soft/google-cloud-sdk/completion.bash.inc ] && \
-    source ~/soft/google-cloud-sdk/completion.bash.inc
-[ -f ~/soft/google-cloud-sdk/path.bash.inc ] && \
-    source ~/soft/google-cloud-sdk/path.bash.inc
+
+add-path ~/google-cloud-sdk/platform/google_appengine/
+add-path ~/go_appengine/
+[ -f ~/google-cloud-sdk/completion.bash.inc ] && \
+    source ~/google-cloud-sdk/completion.bash.inc
+[ -f ~/google-cloud-sdk/path.bash.inc ] && \
+    source ~/google-cloud-sdk/path.bash.inc
 
 #
 # Travis
@@ -115,9 +118,7 @@ add-path $HOME/.guix-profile/sbin
 # Maria's environment
 add-path $HOME/.rvm/bin # Add RVM to PATH for scripting
 add-path $HOME/.rvm/scripts/rvm
-add-path /home/maria/google-cloud-sdk/platform/google_appengine/
-source $HOME/google-cloud-sdk/path.bash.inc
-source $HOME/google-cloud-sdk/completion.bash.inc
+
 add-path $HOME/.local/bin
 source "$HOME/.rvm/scripts/rvm"
 
