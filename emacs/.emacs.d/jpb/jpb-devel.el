@@ -316,14 +316,16 @@
 ;;
 (with-eval-after-load 'company
   (add-to-list 'company-backends 'company-go))
-
+(add-hook 'go-mode-hook 'flycheck-mode)
 (add-hook 'go-mode-hook
           (lambda ()
-            ;;(add-hook 'before-save-hook 'gofmt-before-save)
+            (add-hook 'before-save-hook 'gofmt-before-save)
             (setq tab-width 4)
             (setq indent-tabs-mode 0)))
-
+(add-hook 'go-mode-hook 'go-eldoc-setup)
 (setq company-go-gocode-command "~/.go-path/bin/gocode")
+(setq go-eldoc-gocode "~/.go-path/bin/gocode")
+(setq godef-command "~/.go-path/bin/gocode")
 
 ;;
 ;; Octave
