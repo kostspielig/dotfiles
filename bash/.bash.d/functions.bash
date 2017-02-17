@@ -28,6 +28,12 @@ mkcd()
     test -d "$1" || mkdir "$1" && cd "$1"
 }
 
+pixie()
+{
+    base_path=~/.go-path/src/github.bus.zalan.do/team-tracking/pixie
+    [[ $PWD/ != $base_path ]]; cd $base_path;
+}
+
 zal()
 {
   base_path=~/Devel/shop/;
