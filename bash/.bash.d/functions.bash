@@ -30,7 +30,7 @@ mkcd()
 
 zal()
 {
-  base_path=/home/mcarrasco/Devel/shop/;
+  base_path=~/Devel/shop/;
   components=webapp/src/main/frontend-components/;
   [[ $PWD/ != $base_path ]]; cd $base_path;
 
