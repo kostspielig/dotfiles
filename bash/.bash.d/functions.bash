@@ -30,13 +30,13 @@ mkcd()
 
 pixie()
 {
-    base_path=~/.go-path/src/github.bus.zalan.do/team-tracking/pixie
+    base_path=~/go/src/github.bus.zalan.do/team-tracking/pixie
     [[ $PWD/ != $base_path ]]; cd $base_path;
 }
 
 zal()
 {
-  base_path=~/Devel/shop/;
+  base_path=~/dev/shop/;
   components=webapp/src/main/frontend-components/;
   [[ $PWD/ != $base_path ]]; cd $base_path;
 
