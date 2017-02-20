@@ -104,6 +104,7 @@
 ;; Compilation
 ;;
 
+(require 'compile)
 (setq compilation-window-height 12)
 
 (defun compile-here ()
