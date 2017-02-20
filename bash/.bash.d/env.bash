@@ -15,7 +15,7 @@ export LCVER=3.8
 export LC="clang-$LCVER"
 export LXX="clang++-$LCVER"
 
-export GCVER=5
+export GCVER=6
 export GC="gcc-$GCVER"
 export GXX="g++-$GCVER"
 export SHLIB_GXXLD="g++-$GCVER"
@@ -120,7 +120,8 @@ add-path $HOME/.rvm/bin # Add RVM to PATH for scripting
 add-path $HOME/.rvm/scripts/rvm
 
 add-path $HOME/.local/bin
-source "$HOME/.rvm/scripts/rvm"
+[ -f ~/.rvm/scripts/rvm ] && \
+    source ~/.rvm/scripts/rvm
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 add-path /usr/share/apache-maven-3.0.5/bin
@@ -155,3 +156,8 @@ fi
 # Clojure
 #
 # export LEIN_FAST_TRAMPOLINE=true
+
+#
+# Scala
+#
+PATH="$PATH:/home/maria/.conscript/bin"
