@@ -1,20 +1,33 @@
+[user]
+	name = mcarrasco
+	email = maria.carrasco@zalando.de
 [core]
 	editor = emacsclient -a emacs24
 	excludesfile = ~/.gitignore-global
-[user]
-	name = Juan Pedro Bolívar Puente
-	email = raskolnikov@gnu.org
-	signingkey = 529BA962690A70B1
 [push]
-	default = simple
+	default = current
 [alias]
-	st = status
-	ci = commit
+        st = status
+        ci = commit
+        br = branch
+        bra = branch -a
 	co = checkout
-	br = branch
-	cp = cheery-pick
+        df = diff
+        ds = diff --staged
+        lg = log -p
         lol = log --graph --decorate --pretty=oneline --abbrev-commit
-        lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+        lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
+        ls = ls-files
+        unstage = reset HEAD
+
+    	# Show files ignored by git:
+        ign = ls-files -o -i --exclude-standard
+        undo-commit = reset --soft HEAD^
+[credential]
+	helper = cache --timeout=9999999999999600
+[pull]
+	rebase = true
+
 [color]
         branch = auto
         diff = auto
@@ -22,5 +35,3 @@
         status = auto
 [gui]
 	fontdiff = -family Inconsolata -size 12 -weight normal -slant roman -underline 0 -overstrike 0
-[credential]
-	helper = cache --timeout=360000
