@@ -87,7 +87,7 @@
  '(ggtags-update-on-save nil)
  '(global-hl-line-mode t)
  '(gnus-use-dribble-file nil)
- '(gofmt-command "~/go_appengine/gofmt")
+ '(gofmt-command "/usr/local/go/bin/gofmt")
  '(grep-find-ignored-directories
    (quote
     ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "node_modules")))

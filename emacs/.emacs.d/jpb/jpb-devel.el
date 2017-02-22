@@ -324,9 +324,9 @@
             (setq tab-width 4)
             (setq indent-tabs-mode 0)))
 (add-hook 'go-mode-hook 'go-eldoc-setup)
-(setq company-go-gocode-command "~/.go-path/bin/gocode")
-(setq go-eldoc-gocode "~/.go-path/bin/gocode")
-(setq godef-command "~/.go-path/bin/gocode")
+(setq company-go-gocode-command "~/go/bin/gocode")
+(setq go-eldoc-gocode "~/go/bin/gocode")
+(setq godef-command "~/go/bin/gocode")
 
 ;;
 ;; Octave
