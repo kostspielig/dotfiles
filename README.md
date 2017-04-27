@@ -17,6 +17,9 @@ what you need.
 Here are some packages you might need to install via `package-install`
 though, see the file `emacs-installed-packages`.
 
+You also need to install tern by running  `npm install -g tern`.
+
+
 xmonad
 ------
 
@@ -32,10 +35,28 @@ may be installed separatelly.
 
 After installing the configuration, you may need to do:
 
-> ```
-> $ cd ~/.themes/Numix
-> $ make
-> ```
+### Extra stuff to make it work good
+
+#. `xdotool`, the version in _deps/xdotool
+
+```
+    git update _deps/xdotool
+    cd _deps/xdotool
+    sudo apt install libxtst-dev libxkbcommon-dev
+    make
+    sudo make install
+```
+
+#. `sudo apt instal wmctrl`
+
+#. Our version of the `numix` theme (maybe):
+
+```
+git submodule update xmonad/.themes/Numix
+cd ~/.themes/Numix
+make
+```
+
 
 bash
 ----
