@@ -175,7 +175,7 @@ main = do
         , ((mask, xK_e), spawn $ "wmctrl -xa emacs || emacsclient -c -e '(ignore)'")
         , ((mask .|. shiftMask, xK_e), spawn $ "emacsclient -c -e '(ignore)'")
         -- Browser
-        , ((mask, xK_w), spawn $ "wmctrl -xa google-chrome || google-chrome")
+        , ((mask, xK_w), spawn $ "wmctrl -xa google-chrome || ~/usr/bin/google-chrome")
         , ((mask .|. shiftMask, xK_w), spawn $ "google-chrome")
         -- take a screenshot of entire display
         , ((noModMask, xK_Print), spawn "gnome-screenshot")
@@ -279,6 +279,7 @@ main = do
   spawnPipe "killall -w nm-applet; nm-applet"
   spawnPipe "killall -w taffybar-linux-x86_64; taffybar"
   spawnPipe "xdotool search --sync --onlyvisible Taffybar windowlower && xdotool search --sync --onlyvisible Xfdesktop windowlower && sleep 1 && xdotool search --sync --onlyvisible Xfdesktop windowlower"
+  spawnPipe "xinput --set-prop \"12\" \"Device Accel Constant Deceleration\" 0.5"
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd

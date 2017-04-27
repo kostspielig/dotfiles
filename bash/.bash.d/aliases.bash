@@ -85,8 +85,6 @@ alias gulp-coffee='gulp --require coffee-script'
 alias heidisql='wine C:\\Program\ Files\\HeidiSQL\\heidisql.exe'
 alias lock='gnome-screensaver-command -l'
 
-alias chrome-cert='/usr/bin/google-chrome-stable %U --disable-web-security --ignore-certificate-errors'
-
 # git aliases
 alias gs="git status"
 alias gc="git commit"
