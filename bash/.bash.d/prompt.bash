@@ -74,6 +74,10 @@ set_prompt_maria() {
         PS1="$red$fancyx$reset "
     fi
 
+    if [[ -n "$NIX_STORE" ]]; then
+       PS1+="${red}nix $reset"
+    fi
+
     PS1+='\[\e[1;36m\]\u\[\e[1;33m\] \[\e[1;33m\]\w\[\033[m\]\[\e[1;91m\]\[`
            case "$(__git_prompt_color)" in
               red) printf '$__red';;

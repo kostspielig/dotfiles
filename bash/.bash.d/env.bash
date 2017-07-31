@@ -115,6 +115,14 @@ export GUILE_LOAD_COMPILED_PATH=$HOME/.guix-profile/share/guile/site/2.0
 add-path $HOME/.guix-profile/bin
 add-path $HOME/.guix-profile/sbin
 
+#
+# Nix
+#
+if [ -e /home/maria/.nix-profile/etc/profile.d/nix.sh ];
+then
+    source /home/maria/.nix-profile/etc/profile.d/nix.sh;
+fi
+
 # Maria's environment
 add-path $HOME/.rvm/bin # Add RVM to PATH for scripting
 add-path $HOME/.rvm/scripts/rvm
