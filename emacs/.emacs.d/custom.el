@@ -52,7 +52,7 @@
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "xdg-open")
  '(calendar-week-start-day 1)
- '(cider-lein-command "/home/mcarrasco/usr/bin/lein")
+ '(cider-lein-command "~/usr/bin/lein")
  '(clojure-defun-style-default-indent t)
  '(clojure-indent-style :align-arguments)
  '(coffee-extend-comments nil)
@@ -145,7 +145,7 @@
  '(openwith-mode nil)
  '(package-selected-packages
    (quote
-    (groovy-mode helm-ag go-eldoc go-playground company-go go-mode exec-path-from-shell irony company-tern flycheck-apertium flycheck-elm elm-mode jsx-mode js2-mode jade-mode cider cmake-mode nsis-mode emoji-cheat-sheet-plus google-translate babel hackernews helm-smex helm-mu multiple-cursors helm-flx helm-fuzzier helm-make helm-notmuch helm-package helm-unicode swiper-helm helm-projectile helm nm notmuch notmuch-labeler fill-column-indicator zoom-window zoom-frm zeal-at-point yaml-mode xterm-color web-mode w3 vline travis string-utils smex skewer-mode skeletor shell-toggle scss-mode sass-mode rust-mode request-deferred realgud rainbow-delimiters projectile nginx-mode neotree multi-term monokai-theme modern-cpp-font-lock markdown-mode+ magit-filenotify jack-connect jabber-otr irony-eldoc ido-ubiquitous haskell-mode git-messenger gist geiser flymake-yaml flymake-sass flycheck-irony expand-region ensime emms dumb-jump dirtree dirtrack-buffer-name-track-mode diminish dedicated cyberpunk-theme cmake-ide clojurescript-mode clojure-cheatsheet cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
+    (tss typescript-mode markdown-preview-mode editorconfig groovy-mode helm-ag go-eldoc go-playground company-go go-mode exec-path-from-shell irony company-tern flycheck-apertium flycheck-elm elm-mode jsx-mode js2-mode jade-mode cider cmake-mode nsis-mode emoji-cheat-sheet-plus google-translate babel hackernews helm-smex helm-mu multiple-cursors helm-flx helm-fuzzier helm-make helm-notmuch helm-package helm-unicode swiper-helm helm-projectile helm nm notmuch notmuch-labeler fill-column-indicator zoom-window zoom-frm zeal-at-point yaml-mode xterm-color web-mode w3 vline travis string-utils smex skewer-mode skeletor shell-toggle scss-mode sass-mode rust-mode request-deferred realgud rainbow-delimiters projectile nginx-mode neotree multi-term monokai-theme modern-cpp-font-lock markdown-mode+ magit-filenotify jack-connect jabber-otr irony-eldoc ido-ubiquitous haskell-mode git-messenger gist geiser flymake-yaml flymake-sass flycheck-irony expand-region ensime emms dumb-jump dirtree dirtrack-buffer-name-track-mode diminish dedicated cyberpunk-theme cmake-ide clojurescript-mode clojure-cheatsheet cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
  '(projectile-global-mode t)
  '(projectile-use-git-grep t)
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
