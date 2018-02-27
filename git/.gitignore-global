@@ -1,6 +1,11 @@
 *~
 *.*~
+.tern-port
 GPATH
 GRTAGS
 GTAGS
 
+# Emacs
+\#*\#
+.\#*
+.projectile
