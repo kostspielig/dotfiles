@@ -123,6 +123,15 @@ then
     source /home/maria/.nix-profile/etc/profile.d/nix.sh;
 fi
 
+#
+# Autojump
+#
+if [ -e /usr/share/autojump/autojump.sh ];
+then
+    source /usr/share/autojump/autojump.sh;
+fi
+
+
 # Maria's environment
 add-path $HOME/.rvm/bin # Add RVM to PATH for scripting
 add-path $HOME/.rvm/scripts/rvm
