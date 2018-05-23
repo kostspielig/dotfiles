@@ -42,6 +42,19 @@ alias gsuri="git submodule update --recursive --init"
 alias gignore="git update-index --assume-unchanged"
 alias gunignore="git update-index --no-assume-unchanged"
 alias glsignore="git ls-files -v | grep \"^[[:lower:]]\""
+alias gb='git branch'
+alias gba='git branch -a'
+alias gst="git status"
+alias gco="git checkout"
+alias glg="git log"
+alias gup="git pull --rebase"
+alias gd='git diff'
+alias gcp='git cherry-pick'
+alias gcam='git commit -a -m'
+
+alias gg='git gui citool'
+alias gga='git gui citool --amend'
+
 
 # emacs
 if [ "$(uname)" == "Darwin" ]; then
