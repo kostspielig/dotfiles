@@ -58,6 +58,7 @@
 (projectile-global-mode 1)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;;
 ;; Email
