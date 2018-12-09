@@ -81,6 +81,12 @@ add-path ~/.local/bin
 add-path ~/.cabal/bin
 
 #
+# Kotlin
+#
+
+add-path /usr/lib/kotlin-native-linux-1.3.10/bin
+
+#
 # Node.js
 #
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
