@@ -1,6 +1,6 @@
 [user]
-	name = mcarrasco
-	email = maria.carrasco@zalando.de
+	name = kostspielig
+	email = kostspielig@gmail.com
 [core]
 	editor = emacsclient -a emacs24
 	excludesfile = ~/.gitignore-global
