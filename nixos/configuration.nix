@@ -4,6 +4,25 @@
 
 { config, pkgs, ... }:
 
+let
+
+  fetchFromGitHub = (import <nixpkgs> {}).fetchFromGitHub;
+
+  nixos-1803 = import (fetchFromGitHub {
+    owner  = "nixos";
+    repo   = "nixpkgs-channels";
+    rev    = "138f2cc707d7ee13d93c86db3285460e244c402c";
+    sha256 = "0h49j1cbnccqx996x80z7na9p7slnj9liz646s73s55am8wc9q8q";
+  }) {};
+
+  nixos-unstable = import (fetchFromGitHub {
+    owner  = "nixos";
+    repo   = "nixpkgs-channels";
+    rev    = "19eedaf867da3155eec62721e0c8a02895aed74b";
+    sha256 = "06k0hmdn8l1wiirfjcym86pn9rdi8xyfh1any6vgb5nbx87al515";
+  }) {};
+
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -15,7 +34,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Automatically detect other OS installed and add them to the grub menu
-  boot.loader.grub.useOSProber = true;
+  # boot.loader.grub.useOSProber = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -23,9 +42,38 @@
   networking.networkmanager.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    xdotool-arximboldi = with pkgs; stdenv.mkDerivation rec {
+      name = "xdotool-${version}";
+      version = "git";
+      src = fetchFromGitHub {
+        owner = "arximboldi";
+        repo = "xdotool";
+        rev = "61ac3d0bad281e94a5d7b33316a72d48444aa60d";
+        sha256 = "198944p7bndxbv41wrgjdkkrwnvddhk8dx6ldk0mad6c8p5gjdk1";
+      };
+      nativeBuildInputs = [ pkgconfig perl ];
+      buildInputs = with xorg; [ libX11 libXtst xextproto libXi libXinerama libxkbcommon ];
+      preBuild = ''
+        mkdir -p $out/lib
+      '';
+      makeFlags = "PREFIX=$(out)";
+      meta = {
+        homepage = http://www.semicomplete.com/projects/xdotool/;
+        description = "Fake keyboard/mouse input, window management, and more";
+        license = pkgs.stdenv.lib.licenses.bsd3;
+        maintainers = with stdenv.lib.maintainers; [viric];
+        platforms = with stdenv.lib.platforms; linux;
+      };
+    };
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  programs.bash.enableCompletion = true;
 
   # Select internationalisation properties.
   i18n = {
@@ -50,38 +98,47 @@
     vim
     zile
     emacs
-    
+
+    gcc
+    rustfmt
+    gitAndTools.gitFull
+    silver-searcher
+
     # Network
     wget
     networkmanager
-    
+
     # Media
     smplayer
     calibre
     mplayer
-    
+
     # Editors
     gimp-with-plugins
     gthumb
     inkscape
     libreoffice-fresh
     blender
-    
+    gcolor2
+
     # Utils
+    wget
     stow
     trash-cli
     htop
     lsof
     xorg.xkill
- 
+    ntfs3g
+
     # Desktop
     numix-gtk-theme
     numix-cursor-theme
     numix-icon-theme
     numix-icon-theme-circle
-    taffybar
+    nixos-1803.taffybar
     dmenu
     ibus
+    xdotool-arximboldi
     pa_applet
     pavucontrol
     blueman
@@ -90,6 +147,23 @@
     system-config-printer
     dunst
   ];
+
+  fonts = {
+    enableFontDir = true;
+    enableGhostscriptFonts = true;
+    fonts = with pkgs; [
+      corefonts
+      inconsolata
+      ubuntu_font_family
+      dejavu_fonts
+      fira
+      fira-mono
+      fira-code
+      fira-code-symbols
+      source-sans-pro
+      emojione
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -112,19 +186,34 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "eurosign:e";
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    xkbOptions = "eurosign:e";
 
-  # Enable touchpad support.
-  services.xserver.libinput.enable = true;
+    # Enable touchpad support.
+    libinput.enable = true;
 
-  # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+    # Enable xmonad desktop envrionment
+    # displayManager.gdm.enable = true;
+    displayManager.lightdm.enable = true;
+
+    # displayManager.sddm.enable = true;
+    # desktopManager.plasma5.enable = true;
+    desktopManager.gnome3.enable = true;
+    desktopManager.xfce.enable = true;
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      extraPackages = hs: [hs.taffybar];
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.maria = {
@@ -133,6 +222,8 @@
     extraGroups = [
       "wheel"
       "networkmanager"
+      "audio"
+      "users"
     ];
   };
 
@@ -141,5 +232,4 @@
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "18.09"; # Did you read the comment?
-
 }
