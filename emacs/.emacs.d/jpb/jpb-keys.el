@@ -148,12 +148,6 @@
 (global-set-key '[C-M-up] 'scroll-down-keep-cursor)
 (global-set-key '[C-M-down] 'scroll-up-keep-cursor)
 
-;; Zooming
-(global-set-key (kbd "C-+")      'zoom-frm-in)
-(global-set-key [C-kp-add]       'zoom-frm-in)
-(global-set-key (kbd "C--")      'zoom-frm-out)
-(global-set-key [C-kp-subtract]  'zoom-frm-out)
-
 ;; Go to minibuffer
 (global-set-key (kbd "C-c m") 'jpb-goto-minibuffer)
 

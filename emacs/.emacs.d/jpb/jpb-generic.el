@@ -80,7 +80,6 @@
 (put 'downcase-region 'disabled nil)
 
 (require 'uniquify)
-(require 'zoom-frm)
 
 ;; Override stale locks for desktop
 (defun emacs-process-p (pid)
