@@ -1,0 +1,5 @@
+MailReader=thunderbird
+FileManager=nautilus
+TerminalEmulator=gnome-terminal
+WebBrowser=google-chrome
+
