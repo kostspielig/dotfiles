@@ -72,6 +72,7 @@ main = do
       headerColor     = "#0c0c0c"
       focusedColor    = "#F0544C"
       textColor       = "#ddd"
+      textFont        = "Cantarell-20:bold"
       xpConfig        = defaultXPConfig
         { font              = "xft:" ++ textFont
         , bgColor           = headerColor
@@ -81,7 +82,7 @@ main = do
         , borderColor       = backgroundColor
         , autoComplete      = Nothing
         , promptBorderWidth = 0
-        , height            = 22
+        , height            = 26
         , alwaysHighlight   = True
         , searchPredicate   = L.isInfixOf . map C.toLower
         }
@@ -281,6 +282,9 @@ main = do
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
   putEnv "QT_STYLE_OVERRIDE=breeze"
   putEnv "QT_AUTO_SCREEN_SCALE_FACTOR=0"
+  putEnv "QT_SCALE_FACTOR=1.5"
+  --putEnv "GDK_SCALE=2"
+  --putEnv "GDK_DPI_SCALE=0.5"
   putEnv "QT_QPA_PLATFORMTHEME=lxqt"
   putEnv "GTK_IM_MODULE=ibus"
   putEnv "XMODIFIERS=@im=ibus"

@@ -102,7 +102,7 @@ main = do
       sep'' = label "   " ""
 
   defaultTaffybar defaultTaffybarConfig
-    { barHeight = 26
+    { barHeight = 32
     , widgetSpacing = 2
     , startWidgets = [ sep', logger ]
     , endWidgets = [ sep'', clock, sep, tray, sep, bat, bat', mem, cpu
