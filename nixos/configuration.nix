@@ -5,8 +5,11 @@
 { config, pkgs, ... }:
 
 let
-
   fetchFromGitHub = (import <nixpkgs> {}).fetchFromGitHub;
+
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
 
   nixos-1803 = import (fetchFromGitHub {
     owner  = "nixos";
@@ -44,6 +47,9 @@ in
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.config.packageOverrides = pkgs: {
+    unstable = import unstableTarball {
+      config = config.nixpkgs.config;
+    };
     xdotool-arximboldi = with pkgs; stdenv.mkDerivation rec {
       name = "xdotool-${version}";
       version = "git";
@@ -85,6 +91,9 @@ in
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
+  # Libraries and development utilities documentation and manpages.
+  documentation.dev.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -99,7 +108,13 @@ in
     zile
     emacs
 
+    gnumake
+    cmake
     gcc
+    icu
+    unstable.clang-tools
+    gdb
+    docker
     rustfmt
     gitAndTools.gitFull
     silver-searcher
@@ -122,6 +137,7 @@ in
     gcolor2
 
     # Utils
+    manpages
     wget
     stow
     trash-cli
@@ -180,6 +196,12 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  networking.hosts = {
+    "163.172.181.40" = ["troy"];
+    "127.0.0.1" = ["localhost"];
+    "172.17.0.2" = ["docker"];
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
