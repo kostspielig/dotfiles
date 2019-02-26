@@ -52,14 +52,7 @@
 ;; C++
 ;;
 
-;; Disable until errors solved
-;; (cmake-ide-setup)
-;; (setq cmake-ide-build-dir "build")
-
-(modern-c++-font-lock-global-mode t)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
+;; TODO: install ycmd
 
 ;;
 ;; Fix C++ lambdas
@@ -77,28 +70,10 @@
             0                           ; no additional indent
           ad-do-it)))                   ; default behavior
 
-;;
-;; Fix C++ enum class
-;;
-
-;; replace the `completion-at-point' and `complete-symbol' bindings in
-;; irony-mode's buffers by irony-mode's function
-(add-hook 'irony-mode-hook
-          (lambda ()
-            (define-key irony-mode-map [remap completion-at-point]
-              'irony-completion-at-point-async)
-            (define-key irony-mode-map [remap complete-symbol]
-              'irony-completion-at-point-async)))
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 ;; flycheck
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'c-mode-hook 'flycheck-mode)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-
-;; eldoc
-(add-hook 'irony-mode-hook 'irony-eldoc)
 
 ;;
 ;; Compilation
