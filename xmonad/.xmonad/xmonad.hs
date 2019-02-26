@@ -44,10 +44,11 @@ import XMonad.Prompt.Window
 import XMonad.Util.Cursor
 
 import XMonad.Hooks.EwmhDesktops
-import System.Taffybar.Hooks.PagerHints
+import System.Taffybar.Support.PagerHints
+
+import Graphics.X11.ExtraTypes.XF86
 
 -- http://lpaste.net/83047
-
 copyWindowToAll :: (Eq s, Eq i, Eq a) => a -> W.StackSet i l a s sd -> W.StackSet i l a s sd
 copyWindowToAll w s =
   foldr (copyWindow w) s $ map W.tag (W.workspaces s)
@@ -68,10 +69,9 @@ doBoring =
 main :: IO ()
 main = do
   let backgroundColor = "#444444"
-      headerColor     = "#2d2d2d"
+      headerColor     = "#0c0c0c"
       focusedColor    = "#F0544C"
-      textColor       = "#eeeeee"
-      textFont        = "Inconsolata-13:bold"
+      textColor       = "#ddd"
       xpConfig        = defaultXPConfig
         { font              = "xft:" ++ textFont
         , bgColor           = headerColor
@@ -85,14 +85,14 @@ main = do
         , alwaysHighlight   = True
         , searchPredicate   = L.isInfixOf . map C.toLower
         }
-      dmenuCmd = "~/usr/bin/dmenu_run_xft -b "
+      dmenuCmd = "~/usr/bin/dmenu-run-xft -b "
                  ++ "  -fn '" ++ textFont
                  ++ "' -nb '" ++ headerColor
                  ++ "' -nf '" ++ textColor
                  ++ "' -sb '" ++ focusedColor
                  ++ "' -sf '" ++ headerColor
                  ++ "'"
-      terminalCmd = "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server & gnome-terminal --hide-menubar"
+      terminalCmd = "gnome-terminal --hide-menubar"
 
   let keys' conf@(XConfig {XMonad.modMask = mask}) = M.fromList $
         -- launch a terminal
@@ -144,6 +144,8 @@ main = do
         , ((mask, xK_l), sendMessage Expand)
         -- Push window back into tiling
         , ((mask, xK_t), withFocused $ windows . W.sink)
+        -- Toggle trackpad
+        , ((mask .|. shiftMask, xK_t), spawn $ "~/usr/bin/touchpad-toggle")
         -- Increment the number of windows in the master area
         , ((mask, xK_comma), sendMessage (IncMasterN 1))
         -- Deincrement the number of windows in the master area
@@ -164,10 +166,10 @@ main = do
         , ((mask, xK_Home),      spawn $ "mpc toggle")
         , ((mask, xK_End),       spawn $ "mpc stop")
         -- Toggle compton config
-        , ((mask, xK_i), spawn $ ("((diff ~/.xmonad/compton.conf ~/.xmonad/compton1.conf && " ++
-                                  "    cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf) " ++
-                                  "  || cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf) " ++
-                                  " && killall -USR1 compton"))
+        --, ((mask, xK_i), spawn $ ("((diff ~/.xmonad/compton.conf ~/.xmonad/compton2.conf && " ++
+        --                          "    cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf) " ++
+        --                          "  || cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf) " ++
+        --                          " && killall -USR1 compton"))
         -- Nautilus
         , ((mask, xK_n), spawn $ "nautilus")
         , ((mask .|. shiftMask, xK_n), spawn $ "nautilus -w")
@@ -175,20 +177,25 @@ main = do
         , ((mask, xK_e), spawn $ "wmctrl -xa emacs || emacsclient -c -e '(ignore)'")
         , ((mask .|. shiftMask, xK_e), spawn $ "emacsclient -c -e '(ignore)'")
         -- Browser
-        , ((mask, xK_w), spawn $ "wmctrl -xa google-chrome || ~/usr/bin/google-chrome")
-        , ((mask .|. shiftMask, xK_w), spawn $ "google-chrome")
+        --, ((mask, xK_w), spawn $ "wmctrl -xa chromium || chromium --allow-file-access-from-files")
+        --, ((mask .|. shiftMask, xK_w), spawn $ "chromium  --allow-file-access-from-files")
+        , ((mask, xK_w), spawn $ "wmctrl -xa chromium || chromium --force-device-scale-factor=1.25")
+        , ((mask .|. shiftMask, xK_w), spawn $ "chromium --force-device-scale-factor=1.25")
         -- take a screenshot of entire display
         , ((noModMask, xK_Print), spawn "gnome-screenshot")
         , ((shiftMask, xK_Print), spawn "gnome-screenshot -w -B")
         , ((mask, xK_Print), spawn "gnome-screenshot -i")
+        , ((noModMask, xF86XK_Tools), spawn "xfce4-settings-manager")
+        , ((shiftMask, xF86XK_Tools), spawn "gnome-control-center")
+        , ((mask, xF86XK_Tools), spawn "gnome-tweak-tool")
         -- Maximize
         -- , ((mask .|. shiftMask, xK_minus ), sendMessage MagnifyMore)
         -- , ((mask, xK_minus), sendMessage MagnifyLess)
         -- , ((mask, xK_o    ), sendMessage Toggle)
         -- , ((mask, xK_backslash), withFocused (sendMessage . maximizeRestore))
         -- , ((mask, xK_plus), withFocused (sendMessage . maximize))
-        , ((mask,               xK_o), withFocused minimizeWindow)
-        , ((mask .|. shiftMask, xK_o), sendMessage RestoreNextMinimizedWin)
+        -- , ((mask,               xK_o), withFocused minimizeWindow)
+        -- , ((mask .|. shiftMask, xK_o), sendMessage RestoreNextMinimizedWin)
         ]
         ++
         -- Move workspace
@@ -211,24 +218,24 @@ main = do
         , ((mask, button3), (\w -> focus w >> mouseResizeWindow w))
         ]
 
-  let layout' = smartBorders $ B.boringWindows normalLayout
+  let layout' = avoidStruts $ smartBorders $ B.boringWindows $ normalLayout
         where
-          gap = id -- G.gaps [(G.U, 22)]
-          tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ gap $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
-          circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ gap $ magnifiercz' (100/80) Circle
-          fullLayout   = R.renamed [ R.Replace "Full" ] $ minimize $ gap $ Full
+          -- gap = G.gaps [(G.U, 100)]
+          magnify      = id -- magnifiercz' (100/80)
+          tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ magnify $ Tall 1 (3/100) (6/10)
+          circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ magnify Circle
+          fullLayout   = R.renamed [ R.Replace "Full" ] $ minimize $ Full
           imLayout     = R.renamed [ R.CutWordsLeft 2 ] $ magnifiercz' (100/80) $ withIM (2%10)
                          (Or (Role "buddy_list") (Title "magnicida - Skype™"))
-                         (R.renamed [ R.Replace "Circle" ] Circle |||
-                          R.renamed [ R.Replace "Grid" ] (Mirror (GridRatio (12/10))))
-          normalLayout = onWorkspace "im" (imLayout) $
-                         circleLayout ||| tallLayout ||| fullLayout
+                         (circleLayout ||| tallLayout ||| fullLayout)
+          normalLayout = circleLayout ||| tallLayout ||| fullLayout
 
   let manageHook' = composeAll
         [ resource  =? "Do"              --> doIgnore
         , className =? "stalonetray"     --> doIgnore
         , className =? "trayer"          --> doIgnore
-        , className =? "Xfce4-notifyd"   --> doBoring >> doSticky
+        -- , className =? "Xfce4-notifyd"   --> doBoring >> doSticky
+        -- , className =? "Dunst"   --> doBoring >> doSticky
         , className =? "Xfdesktop"       --> doHideIgnore
         , title     =? "Desktop"         --> doHideIgnore
 
@@ -238,13 +245,18 @@ main = do
         , resource  =? "javax.swing.JDialog"     --> doCenterFloat
         , className =? "Tgcm"                    --> doCenterFloat
         , className =? "Qjackctl"                --> doSideFloat SE
+        , className =? "qjackctl"                --> doSideFloat SE
         , className =? "Qjackctl.real"           --> doSideFloat SE
         , className =? "Gcr-prompter"            --> doCenterFloat
+        , className =? "Emoji-keyboard"          --> doCenterFloat
 
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
         , className =? "Pidgin"           --> doShift "im"
+        , className =? "Org.gnome.Polari" --> doShift "im"
         , className =? "Skype"            --> doShift "im"
+
+        , className =? "Screenkey"        --> (doRectFloat $ W.RationalRect 0.7 0.8 0.3 0.13)
 
         , isFullscreen --> doFullFloat
 
@@ -264,35 +276,49 @@ main = do
           checkDialog = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_DIALOG"
           checkMenu   = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU"
 
+  putEnv "GTK_CSD=0"
+  --putEnv "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk3-nocsd.so.0"
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
-  spawnPipe "cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
-  spawnPipe "xfdesktop -D -R"
-  spawnPipe "xfsettingsd --replace --no-daemon"
-  spawnPipe "xfce4-power-manager --restart"
-  spawnPipe "tracker daemon -s"
-  spawnPipe "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
-  spawnPipe "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
-  spawnPipe "pidof syncthing || syncthing"
-  spawnPipe "ibus-daemon --replace"
-  spawnPipe "killall -w volti; volti"
-  spawnPipe "killall -w mpDris; mpDris"
-  spawnPipe "killall -w nm-applet; nm-applet"
-  spawnPipe "killall -w taffybar-linux-x86_64; taffybar"
-  spawnPipe "xdotool search --sync --onlyvisible Taffybar windowlower && xdotool search --sync --onlyvisible Xfdesktop windowlower && sleep 1 && xdotool search --sync --onlyvisible Xfdesktop windowlower"
-  spawnPipe "xinput --set-prop \"12\" \"Device Accel Constant Deceleration\" 0.5"
-
+  putEnv "QT_STYLE_OVERRIDE=breeze"
+  putEnv "QT_AUTO_SCREEN_SCALE_FACTOR=0"
+  putEnv "QT_QPA_PLATFORMTHEME=lxqt"
+  putEnv "GTK_IM_MODULE=ibus"
+  putEnv "XMODIFIERS=@im=ibus"
+  putEnv "QT_IM_MODULE=ibus"
+  spawn "xset -b"
+  spawn "xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1"
+  --spawn "cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
+  --spawn "killall -w notify-osd; killall -w xfce4-notifyd;  notify-osd"
+  spawn "killall -w notify-osd; killall -w xfce4-notifyd; killall -w dunst; dunst"
+  spawn "xfdesktop -D -R"
+  spawn "xfsettingsd --replace --no-daemon"
+  spawn "ibus-daemon --replace"
+  spawn "xfce4-power-manager --restart"
+  spawn "tracker daemon -s"
+  spawn "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
+  spawn "~/usr/bin/startemacs"
+  spawn "pidof syncthing || syncthing -no-browser"
+  spawn "pidof redshift || redshift-gtk -l 52.51:13.4"
+  spawn "killall -w pa-applet; pa-applet"
+  spawn "killall -w nm-applet; nm-applet"
+  spawn "killall -w blueman-applet; blueman-applet"
+  spawn "killall -w taffybar-linux-x86_64; taffybar"
+  spawn "~/usr/bin/fix-desktop-window-order"
+  spawn "killall -w mpd; mpd"
+  spawn "killall -w mpDris2; mpDris2"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
-    , borderWidth        = 0
+    , borderWidth        = 4
     , modMask            = mod4Mask
     , workspaces         = [ "web", "emacs", "misc", "mail", "im" ]
-    , normalBorderColor  = backgroundColor
-    , focusedBorderColor = focusedColor
+    , normalBorderColor  = headerColor --"#242424" --backgroundColor
+    , focusedBorderColor = backgroundColor --focusedColor
     , keys               = keys'
     , mouseBindings      = mouseBindings'
     , manageHook         = manageHook' <+> manageDocks
-    , layoutHook         = avoidStruts $ layout'
+    , layoutHook         = layout'
     , startupHook        = setDefaultCursor xC_arrow
-    , handleEventHook    = handleEventHook defaultConfig <+> fullscreenEventHook
+    , handleEventHook    = handleEventHook defaultConfig <+> fullscreenEventHook <+> docksEventHook
+    , logHook            = spawn "~/usr/bin/xdotool-all Dunst windowraise"
     }

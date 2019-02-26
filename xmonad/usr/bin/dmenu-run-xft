@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+if [ -d "$HOME/usr/bin" ] ; then
+    export PATH="$HOME/usr/bin:$PATH"
+fi
+dmenu_path | grep -v "~$" | dmenu "$@" | ${SHELL:-"/bin/sh"} &
