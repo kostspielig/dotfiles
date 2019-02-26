@@ -7,6 +7,9 @@ described [in this
 article](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html).
 Here are some details about the provided configurations.
 
+Stow can be use with top level dependencies, in this case: `bash,
+emacs, xmonad, git`
+
 emacs
 -----
 
@@ -14,8 +17,8 @@ Configuration for GNU Emacs 24 from Debian Sid.  You might need to
 install extra packages like `chktex`, but I have lost track of all
 what you need.
 
-Here are some packages you might need to install via `package-install`
-though, see the file `emacs-installed-packages`.
+To install all required packages run
+`package-install-selected-packages`
 
 You also need to install tern by running  `npm install -g tern`.
 
@@ -68,3 +71,8 @@ git
 ---
 
 Git configuration too, yeah!
+
+nixos
+-----
+
+Basic configuration for NixOS (:
