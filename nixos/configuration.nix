@@ -237,6 +237,11 @@ in
     };
   };
 
+  services.physlock = {
+    enable = true;
+    allowAnyUser = true;
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.maria = {
     isNormalUser = true;

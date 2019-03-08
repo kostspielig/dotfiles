@@ -96,7 +96,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias gulp-coffee='gulp --require coffee-script'
 
 alias heidisql='wine C:\\Program\ Files\\HeidiSQL\\heidisql.exe'
-alias lock='gnome-screensaver-command -l'
+alias lock='physlock'
 
 # git aliases
 alias gs="git status"
