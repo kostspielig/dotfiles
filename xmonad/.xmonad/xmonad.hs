@@ -82,7 +82,7 @@ main = do
         , borderColor       = backgroundColor
         , autoComplete      = Nothing
         , promptBorderWidth = 0
-        , height            = 26
+        , height            = 22
         , alwaysHighlight   = True
         , searchPredicate   = L.isInfixOf . map C.toLower
         }
@@ -180,8 +180,8 @@ main = do
         -- Browser
         --, ((mask, xK_w), spawn $ "wmctrl -xa chromium || chromium --allow-file-access-from-files")
         --, ((mask .|. shiftMask, xK_w), spawn $ "chromium  --allow-file-access-from-files")
-        , ((mask, xK_w), spawn $ "wmctrl -xa chromium || chromium --force-device-scale-factor=1.25")
-        , ((mask .|. shiftMask, xK_w), spawn $ "chromium --force-device-scale-factor=1.25")
+        , ((mask, xK_w), spawn $ "wmctrl -xa chromium || chromium")
+        , ((mask .|. shiftMask, xK_w), spawn $ "chromium")
         -- take a screenshot of entire display
         , ((noModMask, xK_Print), spawn "gnome-screenshot")
         , ((shiftMask, xK_Print), spawn "gnome-screenshot -w -B")
@@ -282,9 +282,9 @@ main = do
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
   putEnv "QT_STYLE_OVERRIDE=breeze"
   putEnv "QT_AUTO_SCREEN_SCALE_FACTOR=0"
-  putEnv "QT_SCALE_FACTOR=1.5"
+  --putEnv "QT_SCALE_FACTOR=1.5"
   --putEnv "GDK_SCALE=2"
-  --putEnv "GDK_DPI_SCALE=0.5"
+  putEnv "GDK_DPI_SCALE=0.5"
   putEnv "QT_QPA_PLATFORMTHEME=lxqt"
   putEnv "GTK_IM_MODULE=ibus"
   putEnv "XMODIFIERS=@im=ibus"
