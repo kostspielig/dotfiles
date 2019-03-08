@@ -1,6 +1,2 @@
 file:///home/maria/dev
-sftp://maria@orion0/home/maria sftp://orion0
-sftp://orion0:2223/ sftp://mjpi (remote)
-sftp://maria@mjpi/ sftp://mjpi
-sftp://orion0:2225/ sftp://pickup (remote)
-sftp://pickup/ sftp://pickup
+sftp://raskolnikov@troy/home/raskolnikov sftp://troy
