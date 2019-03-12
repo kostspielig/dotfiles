@@ -20,6 +20,12 @@ export GC="gcc-$GCVER"
 export GXX="g++-$GCVER"
 export SHLIB_GXXLD="g++-$GCVER"
 
+#
+# SoundCloud
+#
+export SC_TOOLS_HOME=$HOME/usr/lib/sc-tools
+add-path $SC_TOOLS_HOME
+
 use-clang() {
     export CC=$LC
     export CXX=$LXX

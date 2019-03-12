@@ -225,8 +225,10 @@ in
     "163.172.181.40" = ["troy"];
     "127.0.0.1" = ["localhost"];
     "172.17.0.2" = ["docker"];
-    # Work related
-    "0.0.0.0" = ["checkout.soundcloud.test"];
+    # SC related
+    "0.0.0.0" = ["checkout.soundcloud.test"
+                 "v2.soundcloud.test"
+                 "a2.soundcloud.test"];
   };
 
   # Enable CUPS to print documents.
