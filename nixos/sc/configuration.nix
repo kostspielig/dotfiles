@@ -156,7 +156,6 @@ in
     xorg.xkill
     ntfs3g
     openvpn
-    xscreensaver
 
     # Work
     lastpass-cli
