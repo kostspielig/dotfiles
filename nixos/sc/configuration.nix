@@ -121,6 +121,7 @@ in
     gnumake
     cmake
     gcc
+    nodejs-10_x # emacs tide-mode
     icu
     unstable.clang-tools
     gdb
