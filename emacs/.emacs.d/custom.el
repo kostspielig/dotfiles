@@ -64,6 +64,7 @@
  '(compilation-scroll-output (quote first-error))
  '(compilation-skip-threshold 1)
  '(confirm-kill-emacs nil)
+ '(css-indent-offset 2)
  '(custom-enabled-themes (quote (jpb-wombatish)))
  '(custom-safe-themes
    (quote
