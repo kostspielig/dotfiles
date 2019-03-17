@@ -84,20 +84,7 @@ alias cm-all="cm .. && make -j 4 && ctest --output-on-failure"
 
 # math
 alias p="ipython --no-confirm-exit"
-alias o=octave-cli
 
-# ableton
-alias abl-configure="modules/build-system/scripts/configure.py"
-alias abl-build="modules/build-system/scripts/build.py"
-alias abl-run="modules/build-system/scripts/run.py"
-alias abl-all="abl-configure && abl-build && abl-run"
-
-# maria
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias gulp-coffee='gulp --require coffee-script'
-
-alias heidisql='wine C:\\Program\ Files\\HeidiSQL\\heidisql.exe'
-alias lock='physlock'
 
 # git aliases
 alias gs="git status"
@@ -106,11 +93,6 @@ alias gr="git checkout"
 alias ga="git add"
 alias gl="git lola"
 
-# web dev
-alias pjson="python -mjson.tool"
-
 # screen
 alias scr="screen -DR"
-
-# email
-alias sm="sync-mail"
+alias lock='physlock'

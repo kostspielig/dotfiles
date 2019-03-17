@@ -111,51 +111,9 @@ add-path ~/go_appengine/
     source ~/.travis/travis.sh
 
 #
-# Guix
-#
-export CPATH=$HOME/.guix-profile/include
-export LIBRARY_PATH=$HOME/.guix-profile/lib
-export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
-export GUILE_LOAD_PATH=$HOME/.guix-profile/share/guile/site/2.0
-export GUILE_LOAD_COMPILED_PATH=$HOME/.guix-profile/share/guile/site/2.0
-add-path $HOME/.guix-profile/bin
-add-path $HOME/.guix-profile/sbin
-
-#
 # Nix
 #
 if [ -e /home/maria/.nix-profile/etc/profile.d/nix.sh ];
 then
     source /home/maria/.nix-profile/etc/profile.d/nix.sh;
 fi
-
-#
-# Autojump
-#
-if [ -e /usr/share/autojump/autojump.sh ];
-then
-    source /usr/share/autojump/autojump.sh;
-fi
-
-
-# Maria's environment
-add-path $HOME/.rvm/bin # Add RVM to PATH for scripting
-add-path $HOME/.rvm/scripts/rvm
-
-add-path $HOME/.local/bin
-[ -f ~/.rvm/scripts/rvm ] && \
-    source ~/.rvm/scripts/rvm
-
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-add-path /usr/share/apache-maven-3.0.5/bin
-
-
-#
-# Clojure
-#
-# export LEIN_FAST_TRAMPOLINE=true
-
-#
-# Scala
-#
-PATH="$PATH:/home/maria/.conscript/bin"
