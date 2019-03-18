@@ -112,6 +112,7 @@ in
     chromium
     firefox
     google-chrome
+    unstable.slack
 
     # Code
     vim
