@@ -23,8 +23,13 @@ export SHLIB_GXXLD="g++-$GCVER"
 #
 # SoundCloud
 #
-export SC_TOOLS_HOME=$HOME/usr/lib/sc-tools
+export SC_TOOLS_HOME=$HOME/dev/soundcloud/sc-tools-target/linux_amd64
+export SYSTEM=$HOME/.gem/ruby/2.5.0/bin/
+export GEM_PATH=$GEM_PATH:$HOME/.gem/ruby/2.5.0/
+
 add-path $SC_TOOLS_HOME
+add-path $SYSTEM
+
 
 use-clang() {
     export CC=$LC
