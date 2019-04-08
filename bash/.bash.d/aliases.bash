@@ -85,7 +85,8 @@ alias cm-all="cm .. && make -j 4 && ctest --output-on-failure"
 alias p="ipython --no-confirm-exit"
 
 # SoundCloud
-alias sc="NO_AUTO_UPDATE=1 ~/dev/soundcloud/sc-tools-target/linux_amd64/sc"
+alias scn="NO_AUTO_UPDATE=1 ~/dev/soundcloud/sc-tools-target/linux_amd64/sc"
+alias shibboleth="~/dev/soundcloud/shibboleth/cli/shibboleth"
 
 # git aliases
 alias gs="git status"
