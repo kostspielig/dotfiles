@@ -102,7 +102,7 @@ add-path /usr/lib/kotlin-native-linux-1.3.10/bin
 #
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 
-add-path $HOME/npm-global/bin
+add-path $HOME/node_modules/.bin
 
 #
 # Google cloud stuff
