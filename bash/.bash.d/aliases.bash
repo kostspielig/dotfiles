@@ -46,6 +46,7 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gst="git status"
 alias gco="git checkout"
+alias gcb='git checkout -b'
 alias glg="git log"
 alias gup="git pull --rebase"
 alias gd='git diff'
