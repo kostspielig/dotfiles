@@ -11,3 +11,6 @@ GTAGS
 .projectile
 
 .vscode
+
+# NIX Shell
+shell.nix
