@@ -87,6 +87,7 @@ alias p="ipython --no-confirm-exit"
 
 # SoundCloud
 alias scn="NO_AUTO_UPDATE=1 ~/dev/soundcloud/sc-tools-target/linux_amd64/sc"
+alias sscn="s NO_AUTO_UPDATE=1 ~/dev/soundcloud/sc-tools-target/linux_amd64/sc"
 alias shibboleth="~/dev/soundcloud/shibboleth/cli/shibboleth"
 
 # git aliases
