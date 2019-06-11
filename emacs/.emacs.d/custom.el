@@ -186,7 +186,8 @@
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(vc-follow-symlinks t)
  '(visual-line-fringe-indicators (quote (nil right-curly-arrow)))
- '(web-mode-markup-indent-offset 4)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-markup-indent-offset 2)
  '(yas/root-directory "~/.emacs.d/snippets")
  '(zoom-frame/buffer (quote buffer)))
 (custom-set-faces
