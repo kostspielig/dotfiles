@@ -162,7 +162,6 @@
            (quote innamespace)
            0)
      (web-mode-markup-indent-offset . 2)
-     (web-mode-markup-indent-offset . 4)
      (web-mode-markup-indent-offset . 80)
      (web-markup-indent-offset . 80)
      (coffee-tab-width . 4)
