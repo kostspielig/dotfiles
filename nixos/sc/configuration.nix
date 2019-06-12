@@ -54,6 +54,8 @@ in
 
   networking.networkmanager.enable = true;
 
+  virtualisation.docker.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.config.packageOverrides = pkgs: {
