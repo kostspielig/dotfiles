@@ -55,6 +55,7 @@ in
   networking.networkmanager.enable = true;
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -112,9 +113,9 @@ in
 
     # Web
     chromium
-    firefox
-    google-chrome
-    unstable.slack
+    unstable.firefox
+    unstable.google-chrome
+    slack
 
     # Code
     vim
@@ -123,12 +124,16 @@ in
 
     gnumake
     cmake
+    ruby
     gcc
     nodejs-10_x # emacs tide-mode
+    sbt # emacs ensime for scala-mode
     icu
     unstable.clang-tools
     gdb
     docker
+    docker-machine # sc-tools
+    virtualbox # sc-tools: docker-machine
     rustfmt
     gitAndTools.gitFull
     silver-searcher
@@ -160,10 +165,11 @@ in
     xorg.xkill
     ntfs3g
     openvpn
+    jq
+    xautolock
 
     # Work
-    lastpass-cli
-    bluejeans
+    dbeaver
 
     # Desktop
     numix-gtk-theme
@@ -200,6 +206,11 @@ in
     ];
   };
 
+  # Needed for payments-buckster
+  services.mysql.enable = true;
+  services.mysql.package = pkgs.mysql;
+  # services.mysql.dataDir = "/var/db";
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -218,6 +229,62 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  security.pki.certificates = [ ''
+    SoundCloud v2 local
+    ===================
+    -----BEGIN CERTIFICATE-----
+    MIID3DCCAsSgAwIBAgIHAVRoYTYkIDANBgkqhkiG9w0BAQsFADBmMRswGQYDVQQD
+    ExJ2Mi5zb3VuZGNsb3VkLnRlc3QxCzAJBgNVBAYTAkRFMQ0wCwYDVQQIEwRURVNU
+    MQ0wCwYDVQQHEwRURVNUMQ0wCwYDVQQKEwRURVNUMQ0wCwYDVQQLEwRURVNUMB4X
+    DTE5MDEwNzEwNDI0MVoXDTIwMDExNTAwMDAwMFowZjEbMBkGA1UEAxMSdjIuc291
+    bmRjbG91ZC50ZXN0MQswCQYDVQQGEwJERTENMAsGA1UECBMEVEVTVDENMAsGA1UE
+    BxMEVEVTVDENMAsGA1UEChMEVEVTVDENMAsGA1UECxMEVEVTVDCCASIwDQYJKoZI
+    hvcNAQEBBQADggEPADCCAQoCggEBAJihL+/nAimB3UoS15n0xK96Ywtbul3vnxRI
+    waM/e4LZGiTxd9X5UNgABFGyNz9CfoiBEXiLdiA6FQXG8Gv7dON89r07dbeDNsB5
+    iph+++vej68katPk8M465iJ8VZB4vbdvqyKUinVbSa9i+bIz/e6sb2RngphEam1h
+    KHMM/1IkDM1q4Jzhjt9NXuFpv/WaMxUp9dE2U7/RMloSJ1lZRVSvo5+G9lr4lPNd
+    alaIoEuLNfJOdIJXqdVg0f2jB6zzL3ppcrvRFdDNf2tS/BEHuB/Ubt3AHKLls4Mm
+    34ENKENMunu42dSY8S2oYQMDfnkaaDOeA/bXi0rzhMcBv6s/RtECAwEAAaOBjjCB
+    izAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIC9DAdBgNVHSUEFjAUBggrBgEFBQcD
+    AQYIKwYBBQUHAwgwEQYJYIZIAYb4QgEBBAQDAgD1MB0GA1UdDgQWBBSkNoV3mmkO
+    dLUtXxCfhwgSM0IZGzAdBgNVHREEFjAUghJ2Mi5zb3VuZGNsb3VkLnRlc3QwDQYJ
+    KoZIhvcNAQELBQADggEBAD/uwljOBj8e5iwGOAXT136nGbbLwHelYlINpm0ST+bT
+    U9ewfztxfZUnkGXNg7ZwzTeKEMJ9p/iPIAHkiWGMDBiVVttwC7mxAatQEkIoI8pu
+    DIcgFZ61vg+QV2tiEyJT9P2dlnwWANV70GgpZPUwHetMSvIe9bCGBVyvkYb2OpLa
+    qvUnq7/9W4Hwoh2+M2qJbC4uEe379KQXaAkO8hCTZV01p24GUwf6ZctKrN29UdYT
+    gi29srQ4yIrmkvzv8sKchhTjqt/qHNcPJxWiosq29dRYTNlBPILXhmJ+8GT9rnP0
+    genbI9KcMdNFtytJFxSVwNqAuOmVal3p69Q+l21A0l8=
+    -----END CERTIFICATE-----
+  ''
+  ''
+    SoundCloud a2 local
+    ===================
+    -----BEGIN CERTIFICATE-----
+    MIID3DCCAsSgAwIBAgIHAVRoYVWAlTANBgkqhkiG9w0BAQsFADBmMRswGQYDVQQD
+    ExJhMi5zb3VuZGNsb3VkLnRlc3QxCzAJBgNVBAYTAkRFMQ0wCwYDVQQIEwRURVNU
+    MQ0wCwYDVQQHEwRURVNUMQ0wCwYDVQQKEwRURVNUMQ0wCwYDVQQLEwRURVNUMB4X
+    DTE5MDEwNzEwNDU1N1oXDTIwMDExNTAwMDAwMFowZjEbMBkGA1UEAxMSYTIuc291
+    bmRjbG91ZC50ZXN0MQswCQYDVQQGEwJERTENMAsGA1UECBMEVEVTVDENMAsGA1UE
+    BxMEVEVTVDENMAsGA1UEChMEVEVTVDENMAsGA1UECxMEVEVTVDCCASIwDQYJKoZI
+    hvcNAQEBBQADggEPADCCAQoCggEBAIuMOOGfdiPOAZj+7oYD1G1Pdegj+dcNCOS1
+    SZ4GNthPeGsIg/rYRH+mNTvTMfMeaqjCpBXWgUTBxr2r6QzrcgM8nsQiwp/Mdsmk
+    Bn0rGdLc2Wak1MtTsAg0bTek5UwcCTT/zg2BS23ZXYocvRWK/O34J4rsyYNtz66u
+    gxgjjeBigiJFz81vZ21v6I6IzftvR4+F/UN7xDR8MQCOce8k7pzOyHHkQQi9iBNu
+    gAZFjiJLTx+aVMugS4ZCr6Hup6CuBjPFlM42VGWJ8YelY5r6ujiTlq1aG60vE03N
+    hapFgCX2lkGVJyQseVQBm8wOt+wMT5LH2G8kVzimF1270hKuc50CAwEAAaOBjjCB
+    izAMBgNVHRMEBTADAQH/MAsGA1UdDwQEAwIC9DAdBgNVHSUEFjAUBggrBgEFBQcD
+    AQYIKwYBBQUHAwgwEQYJYIZIAYb4QgEBBAQDAgD1MB0GA1UdDgQWBBRFaYfSh+ON
+    llKNUWrLXkAs+lcfeTAdBgNVHREEFjAUghJhMi5zb3VuZGNsb3VkLnRlc3QwDQYJ
+    KoZIhvcNAQELBQADggEBADnWWP6ZGh55Xmw6eeB3SPAfUAejLT1x6gcP4pmiwmi8
+    2oSz3cQWdNtzEiO9QtbbddYknbZE9V9jHXhTNwkTY0O7Qc4YJ19cmg/QPw7+NHsz
+    /xOSxme3Iaf6d17JII16vg5b1i3Emd1IiWwdKCnHzRdx6EM+qgQbVM9tF8a8mty3
+    tXQ0i+rkpH9Vp2j6dr49MNiLJD1QA9b5t1TnEfsPm7IfmyxjIuRhmXaZJDaam1gx
+    O3c8+n31MVS6/3FpyvsgljxGO/Zd0xyNnnxV13d6fpxYUujGasNDUmcsYF9r6lH3
+    UzodLLNBFMdGf6oIxJFdtmJhjEI9PkJWQrjOSi0nKX4=
+    -----END CERTIFICATE-----
+
+  ''
+];
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -282,6 +349,12 @@ in
       "users"
     ];
   };
+  # This enables a periodically executed systemd service named
+  # nixos-upgrade.service. It runs nixos-rebuild switch --upgrade to
+  # upgrade NixOS to the latest version in the current channel. (To
+  # see when the service runs, see systemctl list-timers.)
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.dates = "11:30";
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
