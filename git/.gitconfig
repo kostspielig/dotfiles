@@ -2,7 +2,7 @@
 	name = kostspielig
 	email = kostspielig@gmail.com
 [core]
-	editor = emacsclient -a emacs24
+	editor = zile
 	excludesfile = ~/.gitignore-global
 [push]
 	default = current
