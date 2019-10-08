@@ -159,7 +159,7 @@ main = do
         -- Restart xmonad
         , ((mask, xK_q), restart "xmonad" True)
         -- Lock screen
-        , ((mask .|. shiftMask, xK_ntilde), spawn $ "gnome-screensaver-command -lock")
+        , ((mask .|. shiftMask, xK_ntilde), spawn $ "physlock")
         , ((mask .|. shiftMask, xK_comma),  spawn $ "sleep 1;xset dpms force off")
         -- GMPC
         , ((mask, xK_Page_Down), spawn $ "mpc next")
