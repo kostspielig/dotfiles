@@ -86,8 +86,25 @@ alias cm-all="cm .. && make -j 4 && ctest --output-on-failure"
 alias p="ipython --no-confirm-exit"
 
 # SoundCloud
-alias scn="NO_AUTO_UPDATE=1 ~/dev/soundcloud/sc-tools-target/linux_amd64/sc"
-alias sscn="s NO_AUTO_UPDATE=1 ~/dev/soundcloud/sc-tools-target/linux_amd64/sc"
+
+## SC Tools
+alias sc="NO_AUTO_UPDATE=1 ~/dev/soundcloud/sc-tools-target/linux_amd64/sc"
+alias ssc="s NO_AUTO_UPDATE=1 ~/dev/soundcloud/sc-tools-target/linux_amd64/sc"
+
+alias add-config="sc add-config"
+alias add-files="sc add-files"
+alias artifact-manager="sc artifact-manager"
+alias cd-help="sc cd-help"
+alias crun="sc crun"
+alias scrun="ssc crun"
+alias docker-ip="sc docker-ip"
+alias gen-db-scripts="sc gen-db-scripts"
+alias gen-wrapper-script="sc gen-wrapper-script"
+alias manifest="sc manifest"
+alias remove-containers="sc remove-containers"
+alias run-db-script="sc run-db-script"
+
+
 alias shibboleth="~/dev/soundcloud/shibboleth/cli/shibboleth"
 
 # git aliases
