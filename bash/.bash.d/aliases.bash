@@ -47,6 +47,7 @@ alias gba='git branch -a'
 alias gst="git status"
 alias gco="git checkout"
 alias gcb='git checkout -b'
+alias gct='git checkout --theirs' # Resolve conficts by accepting remote version
 alias glg="git log"
 alias gup="git pull --rebase"
 alias gd='git diff'
@@ -55,6 +56,7 @@ alias gcam='git commit -a -m'
 
 alias gg='git gui citool'
 alias gga='git gui citool --amend'
+
 
 
 # emacs
