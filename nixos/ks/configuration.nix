@@ -103,8 +103,8 @@ in
 
     # Web
     chromium
-    firefox
-    google-chrome
+    unstable.firefox
+    unstable.google-chrome
 
     # Code
     vim
