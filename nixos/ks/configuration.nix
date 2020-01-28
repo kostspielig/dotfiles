@@ -36,6 +36,9 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Limit maximum number of configurations in boot menu
+  boot.loader.grub.configurationLimit  = 10;
+
   # Automatically detect other OS installed and add them to the grub menu
   # boot.loader.grub.useOSProber = true;
 
