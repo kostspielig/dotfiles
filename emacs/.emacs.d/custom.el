@@ -152,6 +152,7 @@
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
  '(rainbow-delimiters-max-face-count 10)
  '(recentf-max-saved-items 100000)
+ '(ruby-insert-encoding-magic-comment nil)
  '(safe-local-variable-values
    (quote
     ((eval modify-syntax-entry 43 "'")
