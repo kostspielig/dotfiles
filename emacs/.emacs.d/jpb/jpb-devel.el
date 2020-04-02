@@ -256,6 +256,7 @@
 (setq web-mode-content-types-alist
       '(("javascript"    . "\\.es6\\'")))
 
+(add-to-list 'load-path "~/node_modules/.bin/")
 (add-hook 'web-mode-hook (lambda () (tern-mode t)))
 
 (with-eval-after-load 'company
