@@ -18,13 +18,6 @@ let
     sha256 = "0h49j1cbnccqx996x80z7na9p7slnj9liz646s73s55am8wc9q8q";
   }) {};
 
-  nixos-unstable = import (fetchFromGitHub {
-    owner  = "nixos";
-    repo   = "nixpkgs-channels";
-    rev    = "19eedaf867da3155eec62721e0c8a02895aed74b";
-    sha256 = "06k0hmdn8l1wiirfjcym86pn9rdi8xyfh1any6vgb5nbx87al515";
-  }) {};
-
 in
 {
   imports =
@@ -37,14 +30,14 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Ensure that filesystem is mounted at boot time as /
-  boot.initrd.luks.devices = [
+  boot.initrd.luks.devices =
     {
-      name = "root";
-      device = "/dev/nvme0n1p3";
-      preLVM = true;
-      allowDiscards = true;
-    }
-  ];
+      root = {
+        device = "/dev/nvme0n1p3";
+        preLVM = true;
+        allowDiscards = true;
+      };
+    };
 
   # Automatically detect other OS installed and add them to the grub menu
   # boot.loader.grub.useOSProber = true;
@@ -63,7 +56,7 @@ in
     unstable = import unstableTarball {
       config = config.nixpkgs.config;
     };
-    xdotool-arximboldi = with pkgs; stdenv.mkDerivation rec {
+    xdotool-arximboldi = with pkgs; xdotool.overrideDerivation (attrs: rec {
       name = "xdotool-${version}";
       version = "git";
       src = fetchFromGitHub {
@@ -72,20 +65,7 @@ in
         rev = "61ac3d0bad281e94a5d7b33316a72d48444aa60d";
         sha256 = "198944p7bndxbv41wrgjdkkrwnvddhk8dx6ldk0mad6c8p5gjdk1";
       };
-      nativeBuildInputs = [ pkgconfig perl ];
-      buildInputs = with xorg; [ libX11 libXtst xextproto libXi libXinerama libxkbcommon ];
-      preBuild = ''
-        mkdir -p $out/lib
-     '';
-      makeFlags = "PREFIX=$(out)";
-      meta = {
-        homepage = http://www.semicomplete.com/projects/xdotool/;
-        description = "Fake keyboard/mouse input, window management, and more";
-        license = pkgs.stdenv.lib.licenses.bsd3;
-        maintainers = with stdenv.lib.maintainers; [viric];
-        platforms = with stdenv.lib.platforms; linux;
-      };
-    };
+    });
   };
 
   # Configure network proxy if necessary
@@ -96,8 +76,8 @@ in
 
   # Select internationalisation properties.
   i18n = {
-    consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "us";
+    consoleFont = "Lat2-Terminus16";
     defaultLocale = "en_US.UTF-8";
   };
 
@@ -114,20 +94,23 @@ in
     # Web
     chromium
     unstable.firefox
-    unstable.google-chrome
-    slack
+    google-chrome # Fails fetchurl hash algorithm when unstable
+    unstable.slack
+    unstable.metals
 
     # Code
     vim
     zile
     emacs
+    jetbrains.idea-community
 
     gnumake
     cmake
     ruby
     gcc
     nodejs-10_x # emacs tide-mode
-    sbt # emacs ensime for scala-mode
+    sbt # emacs for scala-mode
+    coursier # metals-emacs (scala)
     icu
     unstable.clang-tools
     gdb
@@ -304,9 +287,12 @@ in
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
+  hardware = {
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+    };
+    bluetooth.powerOnBoot = true;
   };
 
   # Enable the X11 windowing system.
@@ -360,5 +346,5 @@ in
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.09"; # Did you read the comment?
+  system.stateVersion = "19.09"; # Did you read the comment?
 }
