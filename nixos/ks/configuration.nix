@@ -110,6 +110,7 @@ in
     vim
     zile
     emacs
+    jetbrains.idea-community
 
     gnumake
     cmake
@@ -121,6 +122,10 @@ in
     rustfmt
     gitAndTools.gitFull
     silver-searcher
+    unstable.metals
+    sbt
+    python3
+    unstable.scala_2_12
 
     # Network
     wget
