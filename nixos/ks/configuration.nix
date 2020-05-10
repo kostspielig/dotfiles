@@ -18,13 +18,6 @@ let
     sha256 = "0h49j1cbnccqx996x80z7na9p7slnj9liz646s73s55am8wc9q8q";
   }) {};
 
-  nixos-unstable = import (fetchFromGitHub {
-    owner  = "nixos";
-    repo   = "nixpkgs-channels";
-    rev    = "19eedaf867da3155eec62721e0c8a02895aed74b";
-    sha256 = "06k0hmdn8l1wiirfjcym86pn9rdi8xyfh1any6vgb5nbx87al515";
-  }) {};
-
 in
 {
   imports =
@@ -63,7 +56,7 @@ in
         sha256 = "198944p7bndxbv41wrgjdkkrwnvddhk8dx6ldk0mad6c8p5gjdk1";
       };
       nativeBuildInputs = [ pkgconfig perl ];
-      buildInputs = with xorg; [ libX11 libXtst xextproto libXi libXinerama libxkbcommon ];
+      buildInputs = with xorg; [ libX11 libXtst libXi libXinerama libxkbcommon ];
       preBuild = ''
         mkdir -p $out/lib
       '';
@@ -104,7 +97,7 @@ in
     # Web
     chromium
     unstable.firefox
-    unstable.google-chrome
+    google-chrome
 
     # Code
     vim
