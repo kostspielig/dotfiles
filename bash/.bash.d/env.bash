@@ -90,55 +90,11 @@ export CTEST_OUTPUT_ON_FAILURE=1
 
 
 #
-# emscripten
-#
-add-path $HOME/soft/binaryen/build/bin
-add-path $HOME/dev/emsdk
-[ -f $HOME/dev/emsdk/emsdk_set_env.sh ] && \
-    source $HOME/dev/emsdk/emsdk_set_env.sh
-
-#
-# Go
-#
-export GOPATH=~/go
-add-path $GOPATH/bin
-add-path /usr/local/go/bin
-
-#
 # Local installs
 #
 add-path /usr/local/bin
 add-path ~/usr/bin
-add-path ~/.local/bin
 
-#
-# Haskell
-#
-add-path ~/.cabal/bin
-
-#
-# Kotlin
-#
-
-add-path /usr/lib/kotlin-native-linux-1.3.10/bin
-
-#
-# Node.js
-#
-export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
-
-add-path $HOME/node_modules/.bin
-
-#
-# Google cloud stuff
-#
-
-add-path ~/google-cloud-sdk/platform/google_appengine/
-add-path ~/go_appengine/
-[ -f ~/google-cloud-sdk/completion.bash.inc ] && \
-    source ~/google-cloud-sdk/completion.bash.inc
-[ -f ~/google-cloud-sdk/path.bash.inc ] && \
-    source ~/google-cloud-sdk/path.bash.inc
 
 #
 # Travis
