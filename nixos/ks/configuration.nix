@@ -163,6 +163,7 @@ in
     libnotify
     system-config-printer
     dunst
+    libcanberra-gtk2
   ];
 
   fonts = {
