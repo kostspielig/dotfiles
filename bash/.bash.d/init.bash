@@ -39,5 +39,3 @@ source ~/.bash.d/functions.bash
 source ~/.bash.d/aliases.bash
 source ~/.bash.d/env.bash
 source ~/.bash.d/prompt.bash
-
-source ~/.bash.d/private.bash
