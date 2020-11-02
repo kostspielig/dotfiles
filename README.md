@@ -20,8 +20,9 @@ what you need.
 To install all required packages run
 `package-install-selected-packages`
 
-You also need to install tern by running  `npm install -g tern`.
-
+You also need to install:
+* _tern_ by running `npm install -g tern`.
+* _ag_ by running `sudo apt install silversearcher-ag`
 
 xmonad
 ------
@@ -43,7 +44,6 @@ After installing the configuration, you may need to do:
 #. `xdotool`, the version in _deps/xdotool
 
 ```
-    git update _deps/xdotool
     cd _deps/xdotool
     sudo apt install libxtst-dev libxkbcommon-dev
     make
