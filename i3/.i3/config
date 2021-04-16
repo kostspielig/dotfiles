@@ -50,7 +50,7 @@ bindsym $mod+c kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
-bindsym $mod+Shift+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
+bindsym $mod+Shift+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 9' -theme Pop-Dark -show combi -icon-theme "Numix-Circle" -show-icons
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -64,6 +64,11 @@ assign [class="E macs"] $ws2
 bindsym $mod+b exec chromium
 bindsym $mod+i exec slack
 bindsym $mod+t exec emacs
+
+# Print screen
+bindsym --release Print exec gnome-screenshot # Grab entire window
+bindsym --release $mod+Print exec gnome-screenshot -w -B # Grab current window + remove border
+bindsym --release Shift+Print exec gnome-screenshot -a # Grab an area of the screen
 
 # change focus
 bindsym $mod+j focus left
