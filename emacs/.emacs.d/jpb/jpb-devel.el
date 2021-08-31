@@ -47,6 +47,7 @@
 (setq reftex-plug-into-AUCTeX t)
 (setq-default TeX-master nil)
 
+
 ;; flycheck
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'c-mode-hook 'flycheck-mode)
@@ -339,6 +340,35 @@
   (add-to-list 'eglot-server-programs '(scala-mode . ("metals-emacs")))
   ;; (optional) Automatically start metals for Scala files.
   :hook (scala-mode . eglot-ensure))
+
+;; (use-package lsp-mode
+;;   ;; Optional - enable lsp-mode automatically in scala files
+;;   :hook  (scala-mode . lsp)
+;;          (lsp-mode . lsp-lens-mode)
+;;   :config (setq lsp-prefer-flymake nil))
+
+;; ;; Enable nice rendering of documentation on hover
+;; (use-package lsp-ui)
+
+;; ;; Add company-lsp backend for metals
+;; (use-package company-lsp)
+
+;; ;; Use the Debug Adapter Protocol for running tests and debugging
+;; (use-package posframe
+;;   ;; Posframe is a pop-up tool that must be manually installed for dap-mode
+;;   )
+;; (use-package dap-mode
+;;   :hook
+;;   (lsp-mode . dap-mode)
+;;   (lsp-mode . dap-ui-mode)
+;;   )
+
+;; ;; Use the Tree View Protocol for viewing the project structure and triggering compilation
+;; (use-package lsp-treemacs
+;;   :config
+;;   (lsp-metals-treeview-enable t)
+;;   (setq lsp-metals-treeview-show-when-views-received t)
+;;   )
 
 ;;
 ;; Typescript

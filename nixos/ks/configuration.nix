@@ -11,12 +11,12 @@ let
     fetchTarball
       https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
 
-  nixos-1803 = import (fetchFromGitHub {
-    owner  = "nixos";
-    repo   = "nixpkgs-channels";
-    rev    = "138f2cc707d7ee13d93c86db3285460e244c402c";
-    sha256 = "0h49j1cbnccqx996x80z7na9p7slnj9liz646s73s55am8wc9q8q";
-  }) {};
+  #nixos-1803 = import (fetchFromGitHub {
+  #  owner  = "nixos";
+  #  repo   = "nixpkgs-channels";
+  #  rev    = "138f2cc707d7ee13d93c86db3285460e244c402c";
+  #  sha256 = "0h49j1cbnccqx996x80z7na9p7slnj9liz646s73s55am8wc9q8q";
+  #}) {};
 
 in
 {
@@ -41,12 +41,13 @@ in
   networking.networkmanager.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+   nixpkgs.config.allowBroken = true;
 
   nixpkgs.config.packageOverrides = pkgs: {
     unstable = import unstableTarball {
       config = config.nixpkgs.config;
     };
-    xdotool-arximboldi = with pkgs; stdenv.mkDerivation rec {
+    xdotool-arximboldi = with pkgs; xdotool.overrideDerivation (attrs: rec {
       name = "xdotool-${version}";
       version = "git";
       src = fetchFromGitHub {
@@ -55,20 +56,7 @@ in
         rev = "61ac3d0bad281e94a5d7b33316a72d48444aa60d";
         sha256 = "198944p7bndxbv41wrgjdkkrwnvddhk8dx6ldk0mad6c8p5gjdk1";
       };
-      nativeBuildInputs = [ pkgconfig perl ];
-      buildInputs = with xorg; [ libX11 libXtst libXi libXinerama libxkbcommon ];
-      preBuild = ''
-        mkdir -p $out/lib
-      '';
-      makeFlags = "PREFIX=$(out)";
-      meta = {
-        homepage = http://www.semicomplete.com/projects/xdotool/;
-        description = "Fake keyboard/mouse input, window management, and more";
-        license = pkgs.stdenv.lib.licenses.bsd3;
-        maintainers = with stdenv.lib.maintainers; [viric];
-        platforms = with stdenv.lib.platforms; linux;
-      };
-    };
+    });
   };
 
   # Configure network proxy if necessary
@@ -78,9 +66,11 @@ in
   programs.bash.enableCompletion = true;
 
   # Select internationalisation properties.
-  i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
+  
+  console.font = "Lat2-Terminus16";
+  console.keyMap = "us";
+  
+  i18n = {  
     defaultLocale = "en_US.UTF-8";
   };
 
@@ -96,8 +86,8 @@ in
 
     # Web
     chromium
-    unstable.firefox
-    google-chrome
+    #unstable.firefox
+    unstable.google-chrome
 
     # Code
     vim
@@ -109,16 +99,17 @@ in
     cmake
     gcc
     icu
-    unstable.clang-tools
+    clang-tools
     gdb
     docker
     rustfmt
     gitAndTools.gitFull
     silver-searcher
-    unstable.metals
+    #unstable.metals
     sbt
     python3
-    unstable.scala_2_12
+    #unstable.scala_2_12
+    nodejs
 
     # Network
     wget
@@ -128,6 +119,7 @@ in
     smplayer
     calibre
     mplayer
+    vlc
 
     # Editors
     gimp-with-plugins
@@ -136,6 +128,7 @@ in
     libreoffice-fresh
     blender
     gcolor2
+    xournal
 
     # Utils
     manpages
@@ -146,13 +139,14 @@ in
     lsof
     xorg.xkill
     ntfs3g
+    kitty
 
     # Desktop
     numix-gtk-theme
     numix-cursor-theme
     numix-icon-theme
     numix-icon-theme-circle
-    nixos-1803.taffybar
+
     dmenu
     ibus
     xdotool-arximboldi
@@ -163,6 +157,7 @@ in
     libnotify
     system-config-printer
     dunst
+    taffybar
     libcanberra-gtk2
   ];
 
