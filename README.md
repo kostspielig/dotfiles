@@ -14,15 +14,15 @@ emacs
 -----
 
 Configuration for GNU Emacs 24 from Debian Sid.  You might need to
-install extra packages like `chktex`, but I have lost track of all
-what you need.
+install extra packages like `chktex` or `texlive-bin` in arch, but I
+have lost track of all what you need.
 
 To install all required packages run
 `package-install-selected-packages`
 
 You also need to install:
 * _tern_ by running `npm install -g tern`.
-* _ag_ by running `sudo apt install silversearcher-ag`
+* _ag_ by running `sudo apt install silversearcher-ag` or `sudo pacman -S the_silver_searcher`
 
 xmonad
 ------
