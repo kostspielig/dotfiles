@@ -1,0 +1,18 @@
+font=Cantarell 13
+# anchor=bottom-right
+width=350
+padding=10
+margin=6
+border-size=1
+default-timeout=5000
+
+# Only for desktop, ignored when no such output exists
+output=''
+
+background-color=#231f20
+border-color=#f23a07
+text-color=#d9d8d8
+
+[urgency=high]
+border-color=#bd93f9
+ignore-timeout=1

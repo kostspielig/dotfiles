@@ -1,4 +1,4 @@
-# Manjaro setup 
+# Manjaro setup
 
 ## Basic setup
 
@@ -34,8 +34,27 @@ cp /etc/sway/config ~/.config/sway/config
 
 ## Advanced setup
 
+Install additional needed packages
 
-sudo pacman -S i3status ttf-inconsolata noto-fonts-emoji
+`sudo pacman -S i3status ttf-inconsolata noto-fonts-emoji mako grim slurp kitty`
+
+* i3status: program that generates status bar with wifi/battery/time/... (configuration in sway/.i3status.conf)
+* mako: custom notifications (configuration in sway/.config/mako/config)
+* grim/slurp: Screenshot utilities
+* kitty: terminal (configuration in kitty/kitty.conf)
+
+
+Installing nodejs through NVM as a version manager (you can use npm without sudo out of the box)
+
+`sudo pacman -S nvm`
+
+Install latest version of node
+
+`nvm install node`
+
+Install spotify
+
+`sudo snap install spotify`
 
 
 ## How to with command line
