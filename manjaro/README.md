@@ -36,12 +36,13 @@ cp /etc/sway/config ~/.config/sway/config
 
 Install additional needed packages
 
-`sudo pacman -S i3status ttf-inconsolata noto-fonts-emoji mako grim slurp kitty`
+`sudo pacman -S i3status ttf-inconsolata noto-fonts-emoji mako grim slurp kitty brightnessctl`
 
 * i3status: program that generates status bar with wifi/battery/time/... (configuration in sway/.i3status.conf)
 * mako: custom notifications (configuration in sway/.config/mako/config)
 * grim/slurp: Screenshot utilities
 * kitty: terminal (configuration in kitty/kitty.conf)
+* brightnessctl: utility used to control device brightness
 
 
 Installing nodejs through NVM as a version manager (you can use npm without sudo out of the box)
