@@ -22,16 +22,16 @@ set $headerColor "#0c0c0c"
 set $focusedColor "#f23a07"
 
 # workspaces
-set $ws1 "🌍"
-set $ws2 "⭐"
-set $ws3 "🐈"
-set $ws4 "🚀"
-set $ws5 "💬"
-set $ws6 "📀"
-set $ws7 "🍿"
-set $ws8 "💩"
-set $ws9 "🦪"
-set $ws0 "💚"
+set $ws1 "1:🌍"
+set $ws2 "2:⭐"
+set $ws3 "3:🐈"
+set $ws4 "4:💬"
+set $ws5 "5:📀"
+set $ws6 "6:🍿"
+set $ws7 "7:🚀"
+set $ws8 "8:💩"
+set $ws9 "9:🦪"
+set $ws0 "0:💚"
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -152,9 +152,10 @@ bindsym XF86Search exec bemenu-run
 
     # assign apps to specific workspaces
     assign [class="Google-chrome-stable"] $ws1
-    assign [class="Telegram-desktop"] $ws5
     assign [class="Emacs"] $ws2
-    assign [class="^Spotify$"] $ws6
+    assign [class="vlc"] $ws6
+    # Unclear why but assign does not seem to work for Spotify
+    for_window [class="Spotify"] move window to workspace $ws5
 
 
     # shortcuts
@@ -302,7 +303,7 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     #status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-
+    strip_workspace_numbers yes
     colors {
         statusline #ffffff
         background #1a1d25
