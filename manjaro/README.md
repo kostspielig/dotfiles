@@ -63,6 +63,14 @@ Install spotify
 ### Wifi
 
 Command line: `nmtui`
+Alternatively, you can install nm-applet with:
+`yay -S network-manager-applet`
+
+Add the applet to the sway tray by addint to your sway config:
+`exec nm-applet --indicator`
+
+Or execute the interface by:
+ `nm-connection-editor`
 
 ### Bluetooth
 
@@ -75,3 +83,29 @@ GUI interface `pavucontrol` or command line `alsamixer`
 ### File managers
 
 `thunar` or `engrampa`
+
+### Window properties
+
+Use the comand `xprop` (plus click on the desired window) to get X window properties (including WM_CLASS)
+
+
+### Upgrade system
+
+`sudo pacman -Syyu`
+
+* -S: synchronize your system’s packages with those in the official repo
+* -y: download fresh package databases from the server
+* -u: upgrade all installed packages
+
+
+## Troubleshooting
+
+#### Display manager
+
+After a while my display manager refused to log into sway, showing a black screen with a blinking cursor and then restarting lightdm (the display manager used by default).
+
+Switch to tty with `Ctr+Alt+F5` and login. Then start sway with `sway` command.
+
+### Reload sway config
+
+If you change sway or i3status config, you can reload by `Shift+Mod+C`
