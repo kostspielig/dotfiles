@@ -87,11 +87,11 @@ output eDP-1 resolution 2560x1440 position 2560,0 scale 1.30
 
 bindsym $mod+Shift+s exec "swaylock -f -i $lockscreenbg"
 
-exec swayidle -w \
-    timeout 600 'swaylock -f -i $lockscreenbg' \
-    timeout 900 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f -i $lockscreenbg'
+# exec swayidle -w \
+#     timeout 600 'swaylock -f -i $lockscreenbg' \
+#     timeout 900 'swaymsg "output * dpms off"' \
+#     resume 'swaymsg "output * dpms on"' \
+#     before-sleep 'swaylock -f -i $lockscreenbg'
 
 # Volume control
 exec --no-startup-id volumeicon
@@ -149,6 +149,10 @@ bindsym XF86Search exec bemenu-run
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+    # Change keyboard language layout
+    bindsym $mod+Shift+d exec setxkbmap de
+    bindsym $mod+Shift+u exec setxkbmap us
 
     # assign apps to specific workspaces
     assign [class="Google-chrome-stable"] $ws1
