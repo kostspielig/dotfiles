@@ -57,6 +57,12 @@ Install spotify
 
 `sudo snap install spotify`
 
+Install other programs in flatpak:
+
+`flatpak install net.sourceforge.xournal`
+`flatpak install org.blender.Blender`
+
+Run the program: `flatpak run org.blender.Blender`
 
 ## How to with command line
 
@@ -71,6 +77,13 @@ Add the applet to the sway tray by addint to your sway config:
 
 Or execute the interface by:
  `nm-connection-editor`
+
+Use command line `nmcli`
+List networks using `nmcli c`
+Connect to a network: `nmcli con up ssid/uuid`
+
+### WhoIsHome
+`sudo arp-scan --interface=wlp2s0 --localnet -l`
 
 ### Bluetooth
 
