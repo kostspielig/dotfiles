@@ -1,22 +1,24 @@
 
 source ~/.bash.d/git-prompt.sh
 
-set_prompt () {
+function set_prompt {
     lastcmd=$? # Must come first!
 
     fancyx='\342\234\227'
     checkmark='\342\234\223'
 
-    purple="\[$(tput bold; tput setaf 5)\]"
-    blue="\[$(tput bold; tput setaf 4)\]"
-    white="\[$(tput bold; tput setaf 7)\]"
-    red="\[$(tput bold; tput setaf 1)\]"
-    green="\[$(tput bold; tput setaf 2)\]"
-
-    blue2="\[$(tput setaf 4)\]"
-    green2="\[$(tput setaf 2)\]"
-
-    reset="\[$(tput sgr0)\]"
+    # only call tput if it works
+    if tput bold &> /dev/null; then
+       purple="\[$(tput bold; tput setaf 5)\]"
+       cyan="\[$(tput bold; tput setaf 6)\]"
+       blue="\[$(tput bold; tput setaf 4)\]"
+       white="\[$(tput bold; tput setaf 7)\]"
+       red="\[$(tput bold; tput setaf 1)\]"
+       green="\[$(tput bold; tput setaf 2)\]"
+       blue2="\[$(tput setaf 4)\]"
+       green2="\[$(tput setaf 2)\]"
+       reset="\[$(tput sgr0)\]"
+    fi
 
     PS1=""
 
@@ -39,8 +41,8 @@ set_prompt () {
 
     if [[ $EUID == 0 ]]; then
         PS1+="$red\\u$reset"
-    elif [[ $GUIX_ENVIRONMENT == "t" ]]; then
-        PS1+="$purple\\u$reset"
+    elif is-nix-shell; then
+        PS1+="$cyan\\u$reset"
     else
         PS1+="$green2\\u$reset"
     fi
@@ -56,34 +58,15 @@ set_prompt () {
          esac`$(__git_prompt)$reset"
     fi
 
+    tab_name=""
+    tab_name+="\w"
+    if is-nix-shell; then
+        tab_name+=" (nix)"
+    fi
+    PS1+="\[\e]0;$tab_name\007\]"
+
     PS1+=" "
 }
 
-set_prompt_maria() {
-    lastcmd=$? # Must come first!
 
-    fancyx='\342\234\227'
-    checkmark='\342\234\223'
-    red="\[$(tput bold; tput setaf 1)\]"
-    green="\[$(tput bold; tput setaf 2)\]"
-    reset="\[$(tput sgr0)\]"
-
-    if [[ $lastcmd == 0 ]]; then
-        PS1="$green$checkmark$reset "
-    else
-        PS1="$red$fancyx$reset "
-    fi
-
-    if [[ -n "$NIX_STORE" ]]; then
-       PS1+="${red}nix $reset"
-    fi
-
-    PS1+='\[\e[1;36m\]\u\[\e[1;33m\] \[\e[1;33m\]\w\[\033[m\]\[\e[1;91m\]\[`
-           case "$(__git_prompt_color)" in
-              red) printf '$__red';;
-              green) printf '$__green';;
-              black) printf '$__black';;
-           esac`\]$(__git_prompt)\[\033[0m\] \$ '
-}
-
-PROMPT_COMMAND='set_prompt_maria'
+PROMPT_COMMAND=set_prompt
