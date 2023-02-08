@@ -110,6 +110,14 @@ Use the comand `xprop` (plus click on the desired window) to get X window proper
 * -y: download fresh package databases from the server
 * -u: upgrade all installed packages
 
+update chrome `yay -Syu google-chrome`
+
+### Remove cache files
+
+`sudo pacman -Scc`
+
+### Uninstall packages
+`sudo pacman -Rns #package_name#`
 
 ## Troubleshooting
 
