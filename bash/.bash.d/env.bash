@@ -20,9 +20,11 @@ export GC="gcc-$GCVER"
 export GXX="g++-$GCVER"
 export SHLIB_GXXLD="g++-$GCVER"
 
+export JAVA_HOME="/usr/lib/jvm/default"
+
 # Setup ssh-agent
 
-SSH_ENV="$HOME/.ssh/environment"
+# SSH_ENV="$HOME/.ssh/environment"
 
 function start_agent {
     echo "Initialising new SSH agent..."
@@ -35,15 +37,15 @@ function start_agent {
 
 # Source SSH settings, if applicable
 
-if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
-    }
-else
-    start_agent;
-fi
+#if [ -f "${SSH_ENV}" ]; then
+#    . "${SSH_ENV}" > /dev/null
+#    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+#    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+#        start_agent;
+#    }
+#else
+#    start_agent;
+#fi
 
 use-clang() {
     export CC=$LC
@@ -91,6 +93,9 @@ add-path ~/usr/bin
 [ -f ~/.travis/travis.sh ] && \
     source ~/.travis/travis.sh
 
+# Node package manager
+source /usr/share/nvm/init-nvm.sh
+
 #
 # Nix
 #
@@ -98,3 +103,12 @@ if [ -e /home/maria/.nix-profile/etc/profile.d/nix.sh ];
 then
     source /home/maria/.nix-profile/etc/profile.d/nix.sh;
 fi
+
+
+#
+# General
+#
+
+is-nix-shell() {
+    [[ ! -z "$NIX_STORE" ]]
+}
