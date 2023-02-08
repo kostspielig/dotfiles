@@ -14,3 +14,6 @@ GTAGS
 
 # NIX Shell
 shell.nix
+
+# Node
+node_modules
