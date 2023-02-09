@@ -188,23 +188,12 @@
   (interactive "DSources directory: ")
   (compile (concat "cd " (expand-file-name str) "; gtags")))
 
-;; (add-hook 'c-mode-common-hook
-;;           (lambda ()
-;;             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-;;               (ggtags-mode 1))))
-
 ;;
 ;; Rainbow
 ;;
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'c-mode-common-hook 'rainbow-delimiters-mode)
-
-
-;;
-;; Coffee
-;;
-(require 'coffee-mode)
 
 ;;
 ;; Update copyright
@@ -233,7 +222,7 @@
 (setq web-mode-content-types-alist
       '(("javascript"    . "\\.es6\\'")))
 
-(add-to-list 'load-path "~/node_modules/.bin/")
+(add-to-list 'load-path "~/.nvm/versions/node/v16.8.0/bin")
 (add-hook 'web-mode-hook (lambda () (tern-mode t)))
 
 (with-eval-after-load 'company
@@ -293,11 +282,6 @@
 (setq go-eldoc-gocode "~/go/bin/gocode")
 (setq godef-command "~/go/bin/gocode")
 
-;;
-;; Octave
-;;
-(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
-
 
 ;;
 ;; Scala
@@ -341,35 +325,6 @@
   ;; (optional) Automatically start metals for Scala files.
   :hook (scala-mode . eglot-ensure))
 
-;; (use-package lsp-mode
-;;   ;; Optional - enable lsp-mode automatically in scala files
-;;   :hook  (scala-mode . lsp)
-;;          (lsp-mode . lsp-lens-mode)
-;;   :config (setq lsp-prefer-flymake nil))
-
-;; ;; Enable nice rendering of documentation on hover
-;; (use-package lsp-ui)
-
-;; ;; Add company-lsp backend for metals
-;; (use-package company-lsp)
-
-;; ;; Use the Debug Adapter Protocol for running tests and debugging
-;; (use-package posframe
-;;   ;; Posframe is a pop-up tool that must be manually installed for dap-mode
-;;   )
-;; (use-package dap-mode
-;;   :hook
-;;   (lsp-mode . dap-mode)
-;;   (lsp-mode . dap-ui-mode)
-;;   )
-
-;; ;; Use the Tree View Protocol for viewing the project structure and triggering compilation
-;; (use-package lsp-treemacs
-;;   :config
-;;   (lsp-metals-treeview-enable t)
-;;   (setq lsp-metals-treeview-show-when-views-received t)
-;;   )
-
 ;;
 ;; Typescript
 ;;
@@ -391,5 +346,14 @@
 ;;(add-hook 'before-save-hook 'tide-format-before-save)
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
+
+(add-hook 'typescript-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-x C-e") 'ts-send-last-sexp)
+            (local-set-key (kbd "C-M-x") 'ts-send-last-sexp-and-go)
+            (local-set-key (kbd "C-c b") 'ts-send-buffer)
+            (local-set-key (kbd "C-c C-b") 'ts-send-buffer-and-go)
+            (local-set-key (kbd "C-c l") 'ts-load-file-and-go)))
+
 
 (provide 'jpb-devel)
