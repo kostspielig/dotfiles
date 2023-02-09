@@ -44,8 +44,7 @@
 ;; Helm
 ;;
 (helm-mode 1)
-(helm-flx-mode +1)
-(helm-fuzzier-mode 1)
+
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
@@ -175,9 +174,9 @@
 (eval-after-load "shell"
   '(progn
      (add-hook 'shell-mode-hook
-	       '(lambda ()
+	       #'(lambda ()
 		  (define-key shell-mode-map "\C-m"
-		    '(lambda ()
+		    #'(lambda ()
 		       (interactive)
 		       (comint-send-input)
 		       (condition-case err (kill-buffer "*Completions*") ())

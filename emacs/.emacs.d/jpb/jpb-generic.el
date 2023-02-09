@@ -22,7 +22,7 @@
 ;; Term
 ;;
 (add-hook 'term-mode-hook
-          '(lambda() (set (make-local-variable 'global-hl-line-mode) nil)))
+          #'(lambda() (set (make-local-variable 'global-hl-line-mode) nil)))
 
 ;; Needed for multi-term to work
 (if (not (fboundp 'ad-advised-definition-p))
@@ -37,7 +37,7 @@
 
 (require 'multi-term)
 (dolist (hook (list 'term-mode-hook))
-  (add-hook hook '(lambda () (yas-minor-mode -1))))
+  (add-hook hook #'(lambda () (yas-minor-mode -1))))
 
 (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
 
@@ -49,7 +49,7 @@
 (setq comint-output-filter-functions (remove 'ansi-color-process-output comint-output-filter-functions))
 (setq font-lock-unfontify-region-function 'xterm-color-unfontify-region)
 (add-hook 'shell-mode-hook
-          '(lambda ()
+          #'(lambda ()
              (toggle-truncate-lines 1)
              (set-process-query-on-exit-flag (get-process "shell") nil)))
 

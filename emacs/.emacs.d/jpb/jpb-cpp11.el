@@ -14,7 +14,7 @@
 
 (add-hook
  'c++-mode-hook
- '(lambda()
+ #'(lambda()
     ;; We could place some regexes into `c-mode-common-hook', but note that their evaluation order
     ;; matters.
     (font-lock-add-keywords
