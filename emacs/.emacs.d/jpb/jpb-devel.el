@@ -21,31 +21,13 @@
 ;; Yasnippet
 ;;
 
-(require 'yasnippet)
-(yas-global-mode 1)
+;;(require 'yasnippet)
+;;(yas-global-mode 1)
 
 ;;
 ;; Python
 ;;
 (add-hook 'python-mode-hook 'flycheck-mode)
-
-
-;;
-;; LaTeX
-;;
-
-(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(add-hook 'LaTeX-mode-hook 'flycheck-mode)
-(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
-
-(add-hook 'rst-mode-hook 'auto-fill-mode)
-(add-hook 'rst-mode-hook 'flyspell-mode)
-
-(setq reftex-plug-into-AUCTeX t)
-(setq-default TeX-master nil)
 
 
 ;; flycheck
@@ -222,11 +204,11 @@
 (setq web-mode-content-types-alist
       '(("javascript"    . "\\.es6\\'")))
 
-(add-to-list 'load-path "~/.nvm/versions/node/v16.8.0/bin")
-(add-hook 'web-mode-hook (lambda () (tern-mode t)))
+;;(add-to-list 'load-path "~/.nvm/versions/node/v16.8.0/bin")
+;;(add-hook 'web-mode-hook (lambda () (tern-mode t)))
 
-(with-eval-after-load 'company
-  (add-to-list 'company-backends 'company-tern))
+;;(with-eval-after-load 'company
+;;  (add-to-list 'company-backends 'company-tern))
 
 ;; disable jshint since we prefer eslint checking
 (with-eval-after-load 'flycheck
@@ -237,13 +219,6 @@
 ;; use eslint with web-mode for jsx files
 (with-eval-after-load 'flycheck
   (flycheck-add-mode 'javascript-eslint 'web-mode))
-
-;;
-;; Clojure
-;;
-(defun jpb-cider-connect ()
-  (interactive)
-  (cider-connect "localhost" "7888"))
 
 ;;
 ;; Rust
@@ -257,14 +232,6 @@
 (setq company-tooltip-align-annotations t)
 
 
-;; (use 'figwheel-sidecar.repl-api)
-;; (cljs-repl)
-(defun jpb-cider-enable-figwheel-cljs ()
-  (interactive)
-  (cider-interactive-eval
-   "(use 'figwheel-sidecar.repl-api) (cljs-repl)"
-   nil
-   nil))
 
 ;;
 ;; Go
