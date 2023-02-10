@@ -34,8 +34,6 @@
 (require 'jpb-devel)
 (require 'jpb-cpp11)
 (require 'jpb-keys)
-(when (eq system-type 'darwin)
-  (require 'jpb-macos))
 
 (desktop-save-mode 1)
 (add-hook 'find-file-hook 'desktop-auto-save-set-timer)
