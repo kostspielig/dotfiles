@@ -1,12 +1,9 @@
 ;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolívar Puente
+;; Emacs config file - Maria Carrasco
 ;;
 
-(setq user-mail-address "raskolnikov@gnu.org"
-      user-full-name "Juan Pedro Bolivar Puente")
+(setq user-mail-address "kostspielig@gmail.com"
+      user-full-name "Maria Carrasco")
 
 (require 'notmuch)
 
@@ -14,7 +11,7 @@
    '((:name "inbox" :query "tag:inbox and not tag:lists" :key "i" :sort-order newest-first)
      (:name "lists" :query "tag:inbox and tag:lists" :key "l" :sort-order newest-first)
      (:name "gnu" :query "tag:inbox and tag:gnu" :key "g" :sort-order newest-first)
-     (:name "riseup" :query "tag:inbox and tag:riseup" :key "r" :sort-order newest-first)
+     (:name "outlook" :query "tag:inbox and tag:riseup" :key "r" :sort-order newest-first)
      (:name "gmail" :query "tag:inbox and tag:gmail" :key "G" :sort-order newest-first)
      (:name "unread" :query "tag:unread" :key "u" :sort-order newest-first)
      (:name "flagged" :query "tag:flagged" :key "f" :sort-order newest-first)
@@ -38,22 +35,22 @@
 
 (setq gnus-alias-identity-alist
       `(("gmail" nil
-         "Juan Pedro Bolívar Puente <magnicida@gmail.com>" nil
+         "Maria Carrasco <kostspielig@gmail.com>" nil
          (("Fcc" . "mail/gmail/Sent"))
          nil nil)
-        ("gnu" nil
-         "Juan Pedro Bolívar Puente <raskolnikov@gnu.org>" nil
+        ("outlook" nil
+         "Maria Carrasco <misscarrasco@outlook.com>" nil
          (("Fcc" . "mail/gnu/Sent"))
          nil nil)
-        ("riseup" nil
-         "Juan Pedro Bolívar Puente <juanpe@riseup.net>"
+        ("carrasco" nil
+         "Maria Carrasco <maria@carrasco.in>"
          nil (("Fcc" . "mail/riseup/Sent"))
          nil nil)))
 
 (setq gnus-alias-default-identity "gnu")
 (setq gnus-alias-identity-rules
-      '(("gmail" ("any" "magnicida@gmail.com" both) "gmail")
-        ("riseup" ("any" "juanpe@riseup.net" both) "riseup")))
+      '(("gmail" ("any" "kostspielig@gmail.com" both) "gmail")
+        ("outlook" ("any" "misscarrasco@outlook.com" both) "outlook")))
 
 (add-hook 'message-setup-hook 'gnus-alias-determine-identity)
 (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
@@ -85,14 +82,4 @@
 (setq gnus-directory "~/news/")
 (setq nnfolder-directory "~/mail/archive")
 
-;;
-;; Jabber
-;;
-
-(setq jabber-account-list
-      '(("magnicida@gmail.com"
-         (:network-server . "talk.google.com")
-         (:port . 443)
-         (:connection-type . ssl))))
-
-(provide 'jpb-mail)
+(provide 'init-mail)

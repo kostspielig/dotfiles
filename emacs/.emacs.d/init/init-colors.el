@@ -1,8 +1,5 @@
 ;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolívar Puente
+;; Emacs config file - Maria Carrasco
 ;;
 ;; Note that this color theme is no longer complete since many of the
 ;; colors are now set in custom.el file.
@@ -292,4 +289,4 @@
 
 (color-theme-jpb-black)
 
-(provide 'jpb-colors)
+(provide 'init-colors)

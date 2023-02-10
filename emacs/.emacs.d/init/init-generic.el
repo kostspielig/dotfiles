@@ -1,8 +1,5 @@
 ;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolivar Puente
+;; Emacs config file - Maria Carrasco
 ;;
 
 ;;
@@ -204,4 +201,4 @@ Also returns nil if pid is nil."
 ;;
 ;; (add-hook 'after-make-frame-functions 'on-frame-open)
 
-(provide 'jpb-generic)
+(provide 'init-generic)

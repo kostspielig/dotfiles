@@ -1,8 +1,5 @@
 ;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolivar Puente
+;; Emacs config file - Maria Carrasco
 ;;
 
 (defun jpb-toggle-fullscreen ()
@@ -233,4 +230,4 @@
 
 (global-set-key (kbd "<C-return>") 'newline-without-break-of-line)
 
-(provide 'jpb-keys)
+(provide 'init-keys)

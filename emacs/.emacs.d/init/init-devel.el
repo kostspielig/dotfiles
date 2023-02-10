@@ -1,8 +1,5 @@
 ;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolívar Puente
+;; Emacs config file - Maria Carrasco
 ;;
 
 (defun jpb-fill-mode ()
@@ -323,4 +320,4 @@
             (local-set-key (kbd "C-c l") 'ts-load-file-and-go)))
 
 
-(provide 'jpb-devel)
+(provide 'init-devel)
