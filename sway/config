@@ -160,6 +160,7 @@ bindsym XF86Search exec bemenu-run
     assign [class="vlc"] $ws6
     # Unclear why but assign does not seem to work for Spotify
     for_window [class="Spotify"] move window to workspace $ws5
+    for_window [class="discord"] move window to workspace $ws4
 
 
     # shortcuts
