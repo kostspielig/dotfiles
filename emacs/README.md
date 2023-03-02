@@ -21,3 +21,19 @@ See all documentaion [here](https://magit.vc/manual/magit.html#Getting-Started)
 * `s` to stage files
 * `C-c C-c` to create the actual commit.
 * `P` Push changes
+
+
+## Elixir
+
+For detail configuration in vanilla emacs [see](https://elixirforum.com/t/emacs-elixir-setup-configuration-wiki/19196)
+Clone the elixir-lsp elixir-ls repository locally
+git clone https://github.com/elixir-lsp/elixir-ls.git
+```
+cd elixir-ls (that you just cloned)
+mix deps.get
+mix elixir_ls.release
+```
+
+This will create a release/language_server.sh (and .bat for windows)
+file that you will need for the Emacs integration, so note down this
+path (used as eglot server program in /init-devel.el).

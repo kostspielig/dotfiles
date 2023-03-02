@@ -246,6 +246,12 @@
 (setq go-eldoc-gocode "~/go/bin/gocode")
 (setq godef-command "~/go/bin/gocode")
 
+;;
+;; Elixir
+;;
+
+;; Automatically runs `M-x eglot` for you whenever you are in `elixir-mode`
+(add-hook 'elixir-mode-hook 'eglot-ensure)
 
 ;;
 ;; Scala
@@ -286,6 +292,7 @@
 (use-package eglot
   :config
   (add-to-list 'eglot-server-programs '(scala-mode . ("metals-emacs")))
+  (add-to-list 'eglot-server-programs '(elixir-mode . ("~/.emacs.d/snippets/elixir-ls/release/language_server.sh")))
   ;; (optional) Automatically start metals for Scala files.
   :hook (scala-mode . eglot-ensure))
 
