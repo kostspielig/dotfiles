@@ -22,6 +22,7 @@
         prune = fetch --prune # Deletes local branches that have been deleted from the remote
         undo = reset --soft HEAD^
         stash-all = stash save --include-untracked
+        pushall = !git remote | xargs -L1 git push --all # Git push to all remotes
 
     	# Show files ignored by git:
         ign = ls-files -o -i --exclude-standard
