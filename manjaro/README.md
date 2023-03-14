@@ -130,3 +130,15 @@ Switch to tty with `Ctr+Alt+F5` and login. Then start sway with `sway` command.
 ### Reload sway config
 
 If you change sway or i3status config, you can reload by `Shift+Mod+C`
+
+
+### Snapd filesystem too large
+
+Use the script `scripts/remove-old-snaps.sh` to delete older revisions.
+
+There is a snap option that sets the maximum number of a snap's
+revisions stored by the system after the next refresh, which can be
+set to a number between 2 and 20. You can change this from the default
+value of 3 to 2 by using:
+
+`sudo snap set system refresh.retain=2`
