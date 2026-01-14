@@ -217,6 +217,17 @@
 (with-eval-after-load 'flycheck
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
+;; Tailwindcss
+;(use-package lsp-tailwindcss)
+;(require 'lsp-tailwindcss)
+
+;; Configure the package with use-package
+;(use-package lsp-tailwindcss
+;  :recipe (:host github :repo "merrickluo/lsp-tailwindcss")
+;  :config
+;  (add-hook 'css-mode-hook #'lsp-tailwindcss-enable))
+
+
 ;;
 ;; Rust
 ;;

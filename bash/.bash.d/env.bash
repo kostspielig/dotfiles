@@ -1,4 +1,3 @@
-
 export MPD_HOST=192.168.42.1
 
 export EMAIL="kostspielig@gmail.com"
@@ -21,6 +20,11 @@ export GXX="g++-$GCVER"
 export SHLIB_GXXLD="g++-$GCVER"
 
 export JAVA_HOME="/usr/lib/jvm/default"
+
+# Input method - So I can write in Chinese
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
 # Setup ssh-agent
 

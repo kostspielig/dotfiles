@@ -55,7 +55,7 @@ Install latest version of node
 
 Install spotify
 
-`sudo snap install spotify`
+`sudo snap install spotify` or `yay -Syu spotify`
 
 Install other programs in flatpak:
 

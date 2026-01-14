@@ -5,6 +5,10 @@ elif [ "x$INSIDE_EMACS" != "x" ]; then
     export TERM=xterm-256color
 fi
 
+# Nix Shell
+export NIX_PATH=nixpkgs=channel:nixos-unstable
+
+
 # Use fancy globs
 shopt -s extglob
 
