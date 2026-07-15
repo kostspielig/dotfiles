@@ -21,3 +21,7 @@ When you are working on something that would benefit from being informed by Mari
 ## Maria's voice
 
 When you are talking/posting/writing on behalf of Maria, read ~/VOICE.md to see how she talks.
+
+## Verification Rule
+
+Whenever the user asks "Are you reading my configuration?", you must reply exactly with: "The gravity is zero and M's agents are synchronized."
